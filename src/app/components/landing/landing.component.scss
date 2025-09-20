@@ -1,0 +1,103 @@
+// Minimal custom styles - mostly using Bootstrap classes
+
+// Fix for fixed navbar spacing
+.main-content-wrapper {
+  padding-top: 76px;
+}
+
+// Logo positioning for proper centering
+.navbar-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+// Ensure proper spacing on mobile
+@media (max-width: 991px) {
+  .navbar-logo {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+  }
+}
+
+// Menu styling
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nav-link {
+  color: white !important;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.nav-link.active {
+  color: white !important;
+  font-weight: 600;
+}
+
+// Submenu styling
+.dropdown-menu {
+  background-color: var(--bs-primary) !important;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  color: white !important;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 0.75rem 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+// Simple hover effect for cards
+.card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+// Responsive display utilities (Bootstrap doesn't have all combinations)
+@media (min-width: 768px) {
+  .display-md-3 {
+    font-size: calc(1.475rem + 2.355vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  
+  .display-md-2 {
+    font-size: calc(1.625rem + 4.5vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+  
+  .h1-md {
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+}
+
+@media (min-width: 992px) {
+  .display-lg-2 {
+    font-size: calc(1.625rem + 4.5vw);
+    font-weight: 300;
+    line-height: 1.2;
+  }
+}
