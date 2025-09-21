@@ -95,9 +95,63 @@
 }
 
 @media (min-width: 992px) {
-  .display-lg-2 {
-    font-size: calc(1.625rem + 4.5vw);
-    font-weight: 300;
-    line-height: 1.2;
+    .display-lg-2 {
+      font-size: calc(1.625rem + 4.5vw);
+      font-weight: 300;
+      line-height: 1.2;
+    }
   }
-}
+
+  // Dynamic content styling
+  .temple-info,
+  .temple-features,
+  .about-section {
+    margin-bottom: 2rem;
+    
+    h3 {
+      color: var(--bs-primary);
+      margin-bottom: 1rem;
+    }
+    
+    ul {
+      padding-left: 1.5rem;
+      
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  .hero-section {
+    background: linear-gradient(135deg, var(--bs-primary), rgba(232, 93, 7, 0.8));
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      
+      h3 {
+        color: var(--bs-primary);
+        margin-bottom: 1rem;
+      }
+    }
+  }
