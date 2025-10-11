@@ -5,6 +5,7 @@ export interface MenuContent {
   images?: string[];
   content?: string;
   type: 'page' | 'gallery' | 'list';
+  template?: 'default' | 'activities' | 'events' | 'contact' | 'about';
   items?: ContentItem[];
 }
 

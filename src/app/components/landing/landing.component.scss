@@ -73,6 +73,12 @@
   transition: transform 0.2s ease;
 }
 
+// Max height for activity images
+.mh-500 {
+  max-height: 500px;
+  object-fit: cover;
+}
+
 // Responsive display utilities (Bootstrap doesn't have all combinations)
 @media (min-width: 768px) {
   .display-md-3 {

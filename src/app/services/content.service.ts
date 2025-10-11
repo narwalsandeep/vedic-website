@@ -33,8 +33,67 @@ export class ContentService {
 
   // Transform API response to our MenuContent format
   private transformApiResponse(apiResponse: any, endpoint: string): MenuApiResponse {
+    // Handle all Drupal API responses (starting with /api/)
+    if (endpoint.startsWith('/api/') && Array.isArray(apiResponse)) {
+      // Determine template type based on endpoint
+      let template: 'default' | 'activities' | 'events' | 'contact' | 'about' = 'default';
+      let title = 'Temple Information';
+      let description = 'Content and information for our community';
+      
+      if (endpoint.includes('activity-manager')) {
+        template = 'activities';
+        title = 'Temple Activities';
+        description = 'Explore our various temple activities and programs';
+      } else if (endpoint.includes('events')) {
+        title = 'Temple Events';
+        description = 'Upcoming events and celebrations';
+      } else if (endpoint.includes('blog')) {
+        title = 'Temple Blog';
+        description = 'Latest news and updates from our temple';
+      } else if (endpoint.includes('sad-announcements')) {
+        title = 'Sad Announcements';
+        description = 'Important announcements from our community';
+      } else if (endpoint.includes('general-announcements')) {
+        title = 'General Announcements';
+        description = 'General announcements and updates';
+      } else if (endpoint.includes('gallery')) {
+        title = 'Photo Gallery';
+        description = 'Beautiful moments from our temple community';
+      }
+      
+      return {
+        success: true,
+        data: {
+          id: endpoint.replace('/api/', '').replace('?_format=json', ''),
+          title: title,
+          description: description,
+          type: 'list' as const,
+          template: template,
+          items: apiResponse.map((item: any) => ({
+            id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+            title: this.extractDrupalValue(item.title) || 'Temple Content',
+            description: this.stripHtml(this.extractDrupalValue(item.body) || 'Content description'),
+            image: this.extractDrupalValue(item.field_image) ? `https://phpstack-1514009-5817011.cloudwaysapps.com${this.extractDrupalValue(item.field_image)}` : '/assets/images/placeholder.jpg',
+            link: '#'
+          }))
+        }
+      };
+    }
+    // Handle single Drupal item (non-array response from /api/)
+    else if (endpoint.startsWith('/api/') && !Array.isArray(apiResponse) && apiResponse.title) {
+      return {
+        success: true,
+        data: {
+          id: this.extractDrupalValue(apiResponse.nid) || 'page',
+          title: this.extractDrupalValue(apiResponse.title) || 'Temple Information',
+          description: this.stripHtml(this.extractDrupalValue(apiResponse.body) ? this.extractDrupalValue(apiResponse.body)!.substring(0, 150) : 'Learn more about our temple community'),
+          type: 'page' as const,
+          content: this.generateDrupalPageContent(apiResponse)
+        }
+      };
+    }
     // Handle different API response formats based on endpoint
-    if (endpoint.includes('posts/') && !Array.isArray(apiResponse)) {
+    else if (endpoint.includes('posts/') && !Array.isArray(apiResponse)) {
       // Single post response
       return {
         success: true,
@@ -143,6 +202,40 @@ export class ContentService {
           <h3>Educational Programs</h3>
           <p>Scripture study classes, cultural education, and youth programs for all ages.</p>
         </div>
+      </div>
+    `;
+  }
+
+  private stripHtml(html: string): string {
+    const tmp = document.createElement('DIV');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+  }
+
+  private extractDrupalValue(field: any): string | null {
+    if (!field || !Array.isArray(field) || field.length === 0) {
+      return null;
+    }
+    
+    // Handle different Drupal field structures
+    if (field[0].value !== undefined) {
+      return field[0].value;
+    }
+    
+    return null;
+  }
+
+  private generateDrupalPageContent(item: any): string {
+    const title = this.extractDrupalValue(item.title) || 'Temple Information';
+    const body = this.extractDrupalValue(item.body) || 'Content coming soon.';
+    const imageField = this.extractDrupalValue(item.field_image);
+    const image = imageField ? `https://phpstack-1514009-5817011.cloudwaysapps.com${imageField}` : '';
+    
+    return `
+      <div class="hero-section">
+        <h2>${title}</h2>
+        ${image ? `<img src="${image}" class="img-fluid mb-3" alt="${title}" style="max-height: 400px; object-fit: cover;">` : ''}
+        <div>${body}</div>
       </div>
     `;
   }

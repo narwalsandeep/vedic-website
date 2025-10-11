@@ -90,11 +90,31 @@
       </div>
     </div>
 
-    <!-- List Content -->
-    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.items">
+    <!-- Activities Template - Alternating Layout -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template === 'activities' && currentContent.items">
+      <div class="col-12 mb-4" *ngFor="let item of currentContent.items; let i = index">
+        <div class="card border-0 mt-5 mb-5">
+          <div class="row g-0 align-items-center" [class.flex-row-reverse]="i % 2 === 1">
+            <div class="col-md-6">
+              <img src="{{ item.image || '/assets/images/placeholder.jpg' }}" class=" img-fluid w-100 mh-500 rounded shadow" alt="{{ item.title }}">
+            </div>
+            <div class="col-md-6 ">
+              <div class="card-body p-4 m-4">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <p class="card-text">{{ item.description }}</p>
+                <a href="#" class="btn btn-primary" *ngIf="item.link">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Default List Content (Other menus) -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template !== 'activities' && currentContent.items">
       <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let item of currentContent.items">
         <div class="card h-100">
-          <img src="{{ item.image || '/assets/images/placeholder.jpg' }}" class="card-img-top" alt="{{ item.title }}" style="height: 200px; object-fit: cover;">
+          <img src="{{ item.image || '/assets/images/placeholder.jpg' }}" class="card-img-top" alt="{{ item.title }}">
           <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
             <p class="card-text" *ngIf="item.description">{{ item.description }}</p>

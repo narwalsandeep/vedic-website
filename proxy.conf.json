@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "https://phpstack-1514009-5817011.cloudwaysapps.com",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

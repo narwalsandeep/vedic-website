@@ -70,77 +70,90 @@ export class LandingComponent implements OnInit {
     return null;
   }
 
-  // Left menu items (4 items) - Updated with English-only API endpoints
+  // Left menu items (4 items) - Updated with API endpoints using proxy
   leftMenuItems = [
     {
       title: 'Home',
       id: 'home',
-      endpoint: 'https://jsonplaceholder.typicode.com/posts/1',
+      endpoint: '/api/home?_format=json',
       submenu: []
     },
     {
       title: 'Events',
       id: 'events',
-      endpoint: 'https://jsonplaceholder.typicode.com/posts?_limit=6',
+      endpoint: '/api/event-manager?_format=json',
       submenu: []
     },
     {
       title: 'Activities',
       id: 'activities',
-      endpoint: 'https://jsonplaceholder.typicode.com/users?_limit=6',
+      endpoint: '/api/activity-manager?_format=json',
       submenu: []
     },
     {
       title: 'Temple',
       id: 'temple',
-      endpoint: 'https://jsonplaceholder.typicode.com/posts/2',
+      endpoint: '/api/temple?_format=json',
       submenu: [
-        { title: 'Temple', id: 'temple', endpoint: 'https://jsonplaceholder.typicode.com/posts/2' },
-        { title: 'Priest', id: 'priest', endpoint: 'https://jsonplaceholder.typicode.com/users/1' }
+        { title: 'Temple', id: 'temple', endpoint: '/api/temple?_format=json' },
+        { title: 'Priest', id: 'priest', endpoint: '/api/priest?_format=json' },
+        { title: 'Prayer', id: 'prayer', endpoint: '/api/prayer?_format=json' }
       ]
     }
   ];
 
-  // Right menu items (4 items) - Updated with English-only API endpoints
+  // Right menu items (4 items) - Updated with API endpoints using proxy
   rightMenuItems = [
     {
       title: 'About Us',
       id: 'about-us',
-      endpoint: 'https://jsonplaceholder.typicode.com/posts/3',
+      endpoint: '/api/about-us?_format=json',
       submenu: [
-        { title: 'About Us', id: 'about-us', endpoint: 'https://jsonplaceholder.typicode.com/posts/3' },
-        { title: 'Objectives', id: 'objectives', endpoint: 'https://jsonplaceholder.typicode.com/posts/4' },
-        { title: 'Trustees', id: 'trustees', endpoint: 'https://jsonplaceholder.typicode.com/users/2' },
-        { title: 'Legal', id: 'legal', endpoint: 'https://jsonplaceholder.typicode.com/posts/5' }
+        { title: 'About Us', id: 'about-us', endpoint: '/api/about-us?_format=json' },
+        { title: 'Objectives', id: 'objectives', endpoint: '/api/objectives?_format=json' },
+        { title: 'Trustees', id: 'trustees', endpoint: '/api/trustees?_format=json' },
+        { title: 'Legal', id: 'legal', endpoint: '/api/legal?_format=json' }
       ]
     },
     {
       title: 'Services',
       id: 'services',
-      endpoint: 'https://jsonplaceholder.typicode.com/posts/6',
+      endpoint: '/api/services?_format=json',
       submenu: [
-        { title: 'Services', id: 'services', endpoint: 'https://jsonplaceholder.typicode.com/posts/6' },
-        { title: 'School Visits', id: 'school-visits', endpoint: 'https://jsonplaceholder.typicode.com/posts/7' }
+        { title: 'Services', id: 'services', endpoint: '/api/services?_format=json' },
+        { title: 'School Visits', id: 'school-visits', endpoint: '/api/school-visits?_format=json' },
+        { title: 'Booking Forms', id: 'booking-forms', endpoint: '/api/booking-forms?_format=json' }
       ]
     },
     {
       title: 'Join Us',
       id: 'join-us',
-      endpoint: 'https://jsonplaceholder.typicode.com/posts/8',
+      endpoint: '/api/join-us?_format=json',
       submenu: [
-        { title: 'Members', id: 'members', endpoint: 'https://jsonplaceholder.typicode.com/users/3' },
-        { title: 'Volunteer', id: 'volunteer', endpoint: 'https://jsonplaceholder.typicode.com/posts/9' }
+        { title: 'Members', id: 'members', endpoint: '/api/members?_format=json' },
+        { title: 'Volunteer', id: 'volunteer', endpoint: '/api/volunteer?_format=json' }
       ]
     },
     {
       title: 'More',
       id: 'more',
-      endpoint: 'https://jsonplaceholder.typicode.com/posts/10',
+      endpoint: '/api/more?_format=json',
       submenu: [
-        { title: 'Gallery', id: 'gallery', endpoint: 'https://jsonplaceholder.typicode.com/albums/1/photos?_limit=12' },
-        { title: 'Contact', id: 'contact', endpoint: 'https://jsonplaceholder.typicode.com/users/4' },
-        { title: 'Announcements', id: 'announcements', endpoint: 'https://jsonplaceholder.typicode.com/posts?_limit=8' }
+        { title: 'Gallery', id: 'gallery', endpoint: '/api/gallery?_format=json' },
+        { title: 'Contact', id: 'contact', endpoint: '/api/contact?_format=json' },
+        { title: 'Blog', id: 'blog', endpoint: '/api/blog?_format=json' },
+        { title: 'Sad Announcement', id: 'sad-announcement', endpoint: '/api/sad-announcements?_format=json' },
+        { title: 'General Announcement', id: 'general-announcement', endpoint: '/api/general-announcements?_format=json' },
+        { title: 'Feedback', id: 'feedback', endpoint: '/api/feedback?_format=json' }
       ]
     }
   ];
+
+  // Additional menu item for Donate (standalone)
+  donateMenuItem = {
+    title: 'Donate',
+    id: 'donate',
+    endpoint: '/api/donate?_format=json',
+    submenu: []
+  };
 }

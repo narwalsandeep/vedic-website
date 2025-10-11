@@ -55,3 +55,7 @@ The build artifacts will be stored in the `dist/` directory.
 - Build the Docker image: `docker build -t vedic-web .`
 - Run the container: `docker run -p 4200:4200 vedic-web`
 - Stop the container: `docker compose down`
+
+API endpoint
+check the url, it has entity or node name.
+https://phpstack-1514009-5817011.cloudwaysapps.com/activity-manager?_format=json
