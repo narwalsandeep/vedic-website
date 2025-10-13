@@ -1,0 +1,1256 @@
+[
+  {
+    "nid": [
+      {
+        "value": 25
+      }
+    ],
+    "uuid": [
+      {
+        "value": "4346da22-51f8-4cd9-9264-e40dfe5bf569"
+      }
+    ],
+    "vid": [
+      {
+        "value": 43
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-11T08:19:23+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "8f67a34d-6baa-411e-9888-525dd0b443f8",
+        "url": "/user/1"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Bhasker Dave"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:51:11+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-11T08:19:23+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [
+      {
+        "value": "holding_trustees"
+      }
+    ],
+    "field_designation": [
+      {
+        "value": "Holding Trustee"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 25,
+        "alt": "",
+        "title": "",
+        "width": 770,
+        "height": 950,
+        "target_type": "file",
+        "target_uuid": "fcb05faa-7c4d-4197-9147-6c8f733de65c",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/BPD2022.JPG"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 5
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 24
+      }
+    ],
+    "uuid": [
+      {
+        "value": "1da95264-c455-4c4b-b68a-ba53fd199e3b"
+      }
+    ],
+    "vid": [
+      {
+        "value": 25
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-10T17:50:41+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Praveen Patel"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:50:26+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-10T17:50:41+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [],
+    "field_designation": [
+      {
+        "value": "Holding Trustee"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 24,
+        "alt": "",
+        "title": "",
+        "width": 300,
+        "height": 398,
+        "target_type": "file",
+        "target_uuid": "f8644fde-a1fd-4231-ad1b-be16ad51a8a7",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/praveen%20patel%20web1.jpg"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 4
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 23
+      }
+    ],
+    "uuid": [
+      {
+        "value": "369faf1b-61b5-4050-806c-57ad87a139bf"
+      }
+    ],
+    "vid": [
+      {
+        "value": 24
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-10T17:49:44+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Jaldip Patel"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:49:29+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-10T17:49:44+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [],
+    "field_designation": [
+      {
+        "value": "Holding Trustee"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 23,
+        "alt": "",
+        "title": "",
+        "width": 277,
+        "height": 400,
+        "target_type": "file",
+        "target_uuid": "4be64a07-f6d3-4c82-ae4e-99e0eeb201de",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/jaldip%20patel.jpg"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 3
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 22
+      }
+    ],
+    "uuid": [
+      {
+        "value": "482db01a-23cc-4db8-82d5-8b3fe82a9189"
+      }
+    ],
+    "vid": [
+      {
+        "value": 23
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-10T17:48:46+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Sanjay Davda"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:48:28+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-10T17:48:46+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [],
+    "field_designation": [
+      {
+        "value": "Holding Trustee"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 22,
+        "alt": "",
+        "title": "",
+        "width": 897,
+        "height": 1537,
+        "target_type": "file",
+        "target_uuid": "b56fda59-7ed5-4b90-bd02-2f2068287bb7",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/Sanjay%20Davda.jpg"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 2
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 21
+      }
+    ],
+    "uuid": [
+      {
+        "value": "beb6255d-bcd9-4b80-86fe-379ad95f3552"
+      }
+    ],
+    "vid": [
+      {
+        "value": 27
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-10T17:52:11+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Avinas Patel"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:47:35+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-10T17:52:11+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [],
+    "field_designation": [
+      {
+        "value": "Holding Trustee - Chair"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 21,
+        "alt": "",
+        "title": "",
+        "width": 539,
+        "height": 1168,
+        "target_type": "file",
+        "target_uuid": "6f592c80-c004-4bc5-876e-b0bf51e11e05",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/Avinas%20Patel.jpg"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 1
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 20
+      }
+    ],
+    "uuid": [
+      {
+        "value": "cf89b620-be0b-4949-98b0-137d0d5abca4"
+      }
+    ],
+    "vid": [
+      {
+        "value": 21
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-10T17:46:05+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Aadheer Warriar"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:45:44+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-10T17:46:05+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [],
+    "field_designation": [
+      {
+        "value": "Executive Committee member"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 20,
+        "alt": "",
+        "title": "",
+        "width": 665,
+        "height": 919,
+        "target_type": "file",
+        "target_uuid": "48a176a2-6a8b-4fc1-999d-29f1051e601d",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/Aadheer%20Warriar1.jpg"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 11
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 19
+      }
+    ],
+    "uuid": [
+      {
+        "value": "18e5db4c-b80a-42e1-8bdc-8be6f90db3c7"
+      }
+    ],
+    "vid": [
+      {
+        "value": 142
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-10-11T13:10:24+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "8f67a34d-6baa-411e-9888-525dd0b443f8",
+        "url": "/user/1"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Amit Tiwari"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:44:39+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-10-11T13:10:24+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [
+      {
+        "value": "executive_commettie"
+      }
+    ],
+    "field_designation": [
+      {
+        "value": "Executive Committee member"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 19,
+        "alt": "",
+        "title": "",
+        "width": 446,
+        "height": 565,
+        "target_type": "file",
+        "target_uuid": "246b3965-104a-47a8-8527-68fe4a7fbaf9",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/Amit%20Tiwari.JPG"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 10
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 18
+      }
+    ],
+    "uuid": [
+      {
+        "value": "91eaf326-b44a-4964-9d38-043e1603315a"
+      }
+    ],
+    "vid": [
+      {
+        "value": 19
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-10T17:44:07+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Hansa Sonchhatla"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:43:49+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-10T17:44:07+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [],
+    "field_designation": [
+      {
+        "value": "Executive Committee member"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 18,
+        "alt": "",
+        "title": "",
+        "width": 1021,
+        "height": 1322,
+        "target_type": "file",
+        "target_uuid": "e7bb18ce-87ac-4d5b-8f7f-71d7b06bba6c",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/Hansa%20Sonchatlai.JPG"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 9
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 17
+      }
+    ],
+    "uuid": [
+      {
+        "value": "2f016b3b-1dbf-49cb-b44f-11d0e544a5e6"
+      }
+    ],
+    "vid": [
+      {
+        "value": 18
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-10T17:43:21+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Vidhya Senior"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:43:01+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-10T17:43:21+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [],
+    "field_designation": [
+      {
+        "value": "Executive Committee member"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 17,
+        "alt": "",
+        "title": "",
+        "width": 400,
+        "height": 400,
+        "target_type": "file",
+        "target_uuid": "57a03d0a-416d-4e45-8070-0943f75965ac",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/Vidhya%20Senior.JPG"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 8
+      }
+    ]
+  },
+  {
+    "nid": [
+      {
+        "value": 16
+      }
+    ],
+    "uuid": [
+      {
+        "value": "9bf93c21-d216-47bd-8e9e-66b763f6cead"
+      }
+    ],
+    "vid": [
+      {
+        "value": 17
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "trustee_management",
+        "target_type": "node_type",
+        "target_uuid": "491dd339-2709-4abb-9454-217a8b606aad"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-10T17:42:20+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Mansukh Pipalia"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-10T17:41:58+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-10T17:42:20+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [],
+    "field_category": [],
+    "field_designation": [
+      {
+        "value": "Executive Committee member"
+      }
+    ],
+    "field_image": [
+      {
+        "target_id": 16,
+        "alt": "",
+        "title": "",
+        "width": 300,
+        "height": 446,
+        "target_type": "file",
+        "target_uuid": "527b14d7-4ee9-4482-a040-2562978a3ada",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/mansukhbhai%20web.jpg"
+      }
+    ],
+    "field_order": [
+      {
+        "value": 7
+      }
+    ]
+  }
+]

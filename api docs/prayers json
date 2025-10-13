@@ -1,0 +1,116 @@
+[
+  {
+    "nid": [
+      {
+        "value": 100
+      }
+    ],
+    "uuid": [
+      {
+        "value": "83f5b001-d7df-44e3-b9f0-a3a90c7e106e"
+      }
+    ],
+    "vid": [
+      {
+        "value": 147
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "prayers",
+        "target_type": "node_type",
+        "target_uuid": "199544e5-eed7-4e89-82b7-cb18c2c515aa"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-10-11T13:39:08+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 5,
+        "target_type": "user",
+        "target_uuid": "59540e69-2aa8-41d9-8272-258501cc598e",
+        "url": "/user/5"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 5,
+        "target_type": "user",
+        "target_uuid": "59540e69-2aa8-41d9-8272-258501cc598e",
+        "url": "/user/5"
+      }
+    ],
+    "title": [
+      {
+        "value": "Test Prayers"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-10-11T13:38:49+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-10-11T13:39:08+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "field_language": [
+      {
+        "value": "english"
+      }
+    ],
+    "field_prayer": [
+      {
+        "value": "\u003Cp\u003EThis is Prayer Title\u003C/p\u003E",
+        "format": "basic_html",
+        "processed": "\u003Cp\u003EThis is Prayer Title\u003C/p\u003E"
+      }
+    ],
+    "field_prayerfile": []
+  }
+]

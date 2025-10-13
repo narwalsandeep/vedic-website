@@ -1,0 +1,119 @@
+[
+  {
+    "nid": [
+      {
+        "value": 104
+      }
+    ],
+    "uuid": [
+      {
+        "value": "b1242949-a806-4c41-9ccc-15e3e0868d21"
+      }
+    ],
+    "vid": [
+      {
+        "value": 153
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "announcements",
+        "target_type": "node_type",
+        "target_uuid": "4c5bb072-cb59-440a-8750-882167d820b2"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-10-11T14:20:38+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "8f67a34d-6baa-411e-9888-525dd0b443f8",
+        "url": "/user/1"
+      }
+    ],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "8f67a34d-6baa-411e-9888-525dd0b443f8",
+        "url": "/user/1"
+      }
+    ],
+    "title": [
+      {
+        "value": "test"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-10-11T14:19:16+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-10-11T14:20:38+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [
+      {
+        "value": "\u003Cp\u003Etest\u003C/p\u003E",
+        "format": "basic_html",
+        "processed": "\u003Cp\u003Etest\u003C/p\u003E",
+        "summary": ""
+      }
+    ],
+    "field_attachment": [
+      {
+        "target_id": 125,
+        "display": true,
+        "description": "",
+        "target_type": "file",
+        "target_uuid": "62c48e4a-4625-41d6-b0f6-2ef8d4123788",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-10/Aarti%20at%20the%20Temple%20v4_0.pdf"
+      }
+    ]
+  },

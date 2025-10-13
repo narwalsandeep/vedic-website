@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ContentService } from '../../services/content.service';
@@ -11,16 +11,23 @@ import { MenuContent } from '../../models/content.model';
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, AfterViewInit {
   title = 'Welcome to Vedic Web';
   currentContent: MenuContent | null = null;
   isLoading = false;
   activeMenuId = 'home';
+  selectedGalleryImages: string[] = [];
+  selectedGalleryIndex: number = 0;
+  currentGalleryModalId: string = '';
 
   constructor(private contentService: ContentService) {}
 
   ngOnInit() {
     this.loadContent('home');
+  }
+
+  ngAfterViewInit() {
+    // Component lifecycle hook
   }
 
   loadContent(menuId: string) {
@@ -30,9 +37,13 @@ export class LandingComponent implements OnInit {
     // Find the menu item to get its endpoint
     const menuItem = this.findMenuItem(menuId);
     if (menuItem && menuItem.endpoint) {
-      this.contentService.getContentByEndpoint(menuItem.endpoint).subscribe({
+      const endpoint = menuItem.endpoint;
+      const filterMenuItem = (menuItem as any).filterMenuItem;
+      
+      this.contentService.getContentByEndpoint(endpoint, filterMenuItem, menuId).subscribe({
         next: (response) => {
           this.currentContent = response.data;
+          console.log('Content loaded for menuId:', menuId, 'Data:', this.currentContent);
           this.isLoading = false;
         },
         error: (error) => {
@@ -48,6 +59,39 @@ export class LandingComponent implements OnInit {
 
   onMenuClick(menuId: string) {
     this.loadContent(menuId);
+    this.closeNavbar();
+  }
+
+  private closeNavbar(): void {
+    const navbarCollapse = document.getElementById('navbarNav');
+    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+      const navbar = document.querySelector('.navbar-toggler') as HTMLElement;
+      if (navbar) {
+        navbar.click();
+      }
+    }
+  }
+
+  openGalleryImage(images: string[], index: number, modalId: string): void {
+    this.selectedGalleryImages = images;
+    this.selectedGalleryIndex = index;
+    this.currentGalleryModalId = modalId;
+  }
+
+  previousGalleryImage(): void {
+    if (this.selectedGalleryIndex > 0) {
+      this.selectedGalleryIndex--;
+    } else {
+      this.selectedGalleryIndex = this.selectedGalleryImages.length - 1;
+    }
+  }
+
+  nextGalleryImage(): void {
+    if (this.selectedGalleryIndex < this.selectedGalleryImages.length - 1) {
+      this.selectedGalleryIndex++;
+    } else {
+      this.selectedGalleryIndex = 0;
+    }
   }
 
   private findMenuItem(menuId: string): any {
@@ -81,7 +125,7 @@ export class LandingComponent implements OnInit {
     {
       title: 'Events',
       id: 'events',
-      endpoint: '/api/event-manager?_format=json',
+      endpoint: '/api/events-management?_format=json',
       submenu: []
     },
     {
@@ -90,14 +134,18 @@ export class LandingComponent implements OnInit {
       endpoint: '/api/activity-manager?_format=json',
       submenu: []
     },
+    // Temple menu uses article api endpoint /api/article?_format=json with different filters
+    // Content service filters articles by field_menu_item value
     {
       title: 'Temple',
       id: 'temple',
-      endpoint: '/api/temple?_format=json',
+      endpoint: '/api/article?_format=json',
+      filterMenuItem: 'The Shrines',
       submenu: [
-        { title: 'Temple', id: 'temple', endpoint: '/api/temple?_format=json' },
-        { title: 'Priest', id: 'priest', endpoint: '/api/priest?_format=json' },
-        { title: 'Prayer', id: 'prayer', endpoint: '/api/prayer?_format=json' }
+        { title: 'Temple', id: 'temple', endpoint: '/api/article?_format=json', filterMenuItem: 'The Shrines' },
+        { title: 'Priest', id: 'priest', endpoint: '/api/article?_format=json', filterMenuItem: 'Priest' },
+        { title: 'Prayer', id: 'prayer', endpoint: '/api/prayers?_format=json' },
+        { title: 'Gallery', id: 'gallery', endpoint: '/api/events-gallery?_format=json' }
       ]
     }
   ];
@@ -110,9 +158,9 @@ export class LandingComponent implements OnInit {
       endpoint: '/api/about-us?_format=json',
       submenu: [
         { title: 'About Us', id: 'about-us', endpoint: '/api/about-us?_format=json' },
-        { title: 'Objectives', id: 'objectives', endpoint: '/api/objectives?_format=json' },
-        { title: 'Trustees', id: 'trustees', endpoint: '/api/trustees?_format=json' },
-        { title: 'Legal', id: 'legal', endpoint: '/api/legal?_format=json' }
+        { title: 'Objectives', id: 'objectives', endpoint: '/api/article?_format=json', filterMenuItem: 'Objective' },
+        { title: 'Trustees', id: 'trustees', endpoint: '/api/trustee-management?_format=json' },
+        { title: 'Legal', id: 'legal', endpoint: '/api/article?_format=json', filterMenuItem: 'Legal' }
       ]
     },
     {
@@ -121,7 +169,7 @@ export class LandingComponent implements OnInit {
       endpoint: '/api/services?_format=json',
       submenu: [
         { title: 'Services', id: 'services', endpoint: '/api/services?_format=json' },
-        { title: 'School Visits', id: 'school-visits', endpoint: '/api/school-visits?_format=json' },
+        { title: 'School Visits', id: 'school-visits', endpoint: '/api/article?_format=json', filterMenuItem: 'School Visits' },
         { title: 'Booking Forms', id: 'booking-forms', endpoint: '/api/booking-forms?_format=json' }
       ]
     },
@@ -130,17 +178,23 @@ export class LandingComponent implements OnInit {
       id: 'join-us',
       endpoint: '/api/join-us?_format=json',
       submenu: [
-        { title: 'Members', id: 'members', endpoint: '/api/members?_format=json' },
-        { title: 'Volunteer', id: 'volunteer', endpoint: '/api/volunteer?_format=json' }
+        { title: 'Members', id: 'members', endpoint: '/api/article?_format=json', filterMenuItem: 'Become A Member' },
+        { title: 'Volunteer', id: 'volunteer', endpoint: '/api/article?_format=json', filterMenuItem: 'Vedic Volunteer' },
+        { title: 'Contact', id: 'contact', endpoint: '/api/article?_format=json', filterMenuItem: 'Contact' }
       ]
+    },
+    {
+      title: 'Donate',
+      id: 'donate',
+      endpoint: '/api/article?_format=json',
+      filterMenuItem: 'Donate',
+      submenu: []
     },
     {
       title: 'More',
       id: 'more',
       endpoint: '/api/more?_format=json',
       submenu: [
-        { title: 'Gallery', id: 'gallery', endpoint: '/api/gallery?_format=json' },
-        { title: 'Contact', id: 'contact', endpoint: '/api/contact?_format=json' },
         { title: 'Blog', id: 'blog', endpoint: '/api/blog?_format=json' },
         { title: 'Sad Announcement', id: 'sad-announcement', endpoint: '/api/sad-announcements?_format=json' },
         { title: 'General Announcement', id: 'general-announcement', endpoint: '/api/general-announcements?_format=json' },
@@ -148,12 +202,4 @@ export class LandingComponent implements OnInit {
       ]
     }
   ];
-
-  // Additional menu item for Donate (standalone)
-  donateMenuItem = {
-    title: 'Donate',
-    id: 'donate',
-    endpoint: '/api/donate?_format=json',
-    submenu: []
-  };
 }

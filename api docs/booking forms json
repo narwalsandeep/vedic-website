@@ -1,0 +1,118 @@
+{
+    "nid": [
+      {
+        "value": 89
+      }
+    ],
+    "uuid": [
+      {
+        "value": "8e406342-d157-4072-917b-c889fefbcec1"
+      }
+    ],
+    "vid": [
+      {
+        "value": 102
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "membership_form",
+        "target_type": "node_type",
+        "target_uuid": "cabac2e4-f228-4445-8fea-c7232548c944"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-09-14T14:54:47+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 3,
+        "target_type": "user",
+        "target_uuid": "8740c97f-5eed-4805-af62-2a8863fc65fb",
+        "url": "/user/3"
+      }
+    ],
+    "title": [
+      {
+        "value": "Temple Aarti"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-09-14T14:52:10+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-09-14T14:54:47+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "field_attachment": [
+      {
+        "target_id": 119,
+        "display": true,
+        "description": "",
+        "target_type": "file",
+        "target_uuid": "2af83c7b-5eea-4bbe-a8e5-618e3acf0ece",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-09/Aarti%20at%20the%20Temple%20v4_0.pdf"
+      }
+    ],
+    "field_notes": [
+      {
+        "value": "\u003Cp\u003EThe Temple Aarti is performed twice a day.&nbsp;\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EMonday - Saturday\u003C/strong\u003E &nbsp;Aarti at 10am and 6:30pm\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003ESunday\u003C/strong\u003E Aarti at 12noon and at 6:30pm&nbsp;\u003C/p\u003E\u003Cimg src=\"/sites/default/files/inline-images/aarti.jpg\" data-align=\"left\" data-entity-uuid=\"c5496f9c-36d0-492a-b0ff-707acf80bd09\" data-entity-type=\"file\" alt=\"Aarti\" width=\"338\" height=\"149\"\u003E",
+        "format": "basic_html",
+        "processed": "\u003Cp\u003EThe Temple Aarti is performed twice a day.&nbsp;\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003EMonday - Saturday\u003C/strong\u003E &nbsp;Aarti at 10am and 6:30pm\u003C/p\u003E\u003Cp\u003E\u003Cstrong\u003ESunday\u003C/strong\u003E Aarti at 12noon and at 6:30pm&nbsp;\u003C/p\u003E\u003Cimg src=\"/sites/default/files/inline-images/aarti.jpg\" data-entity-uuid=\"c5496f9c-36d0-492a-b0ff-707acf80bd09\" data-entity-type=\"file\" alt=\"Aarti\" width=\"338\" height=\"149\" class=\"align-left\" loading=\"lazy\"\u003E"
+      }
+    ]
+  },

@@ -1,0 +1,123 @@
+{
+    "nid": [
+      {
+        "value": 101
+      }
+    ],
+    "uuid": [
+      {
+        "value": "caf0ccc9-351b-4fd7-bbfd-371306224135"
+      }
+    ],
+    "vid": [
+      {
+        "value": 148
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "blog",
+        "target_type": "node_type",
+        "target_uuid": "3201f407-ad2e-4382-802d-a3a7685be199"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-10-11T13:56:55+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "8f67a34d-6baa-411e-9888-525dd0b443f8",
+        "url": "/user/1"
+      }
+    ],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "8f67a34d-6baa-411e-9888-525dd0b443f8",
+        "url": "/user/1"
+      }
+    ],
+    "title": [
+      {
+        "value": "test"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-10-11T13:56:32+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-10-11T13:56:55+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [
+      {
+        "value": "\u003Cp\u003Ebody test body\u003C/p\u003E",
+        "format": "basic_html",
+        "processed": "\u003Cp\u003Ebody test body\u003C/p\u003E",
+        "summary": ""
+      }
+    ],
+    "field_blogfile": [
+      {
+        "target_id": 124,
+        "display": false,
+        "description": "",
+        "target_type": "file",
+        "target_uuid": "769783a7-055e-44c4-b02a-7492eb860e9a",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-10/pexels-adrienn-638530-1537635_0.jpg"
+      }
+    ],
+    "field_subtitle": [
+      {
+        "value": "test"
+      }
+    ]
+  }

@@ -1,0 +1,119 @@
+
+  {
+    "nid": [
+      {
+        "value": 98
+      }
+    ],
+    "uuid": [
+      {
+        "value": "ba9c7f60-7e03-4306-b285-12eb2e42c95e"
+      }
+    ],
+    "vid": [
+      {
+        "value": 145
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "services",
+        "target_type": "node_type",
+        "target_uuid": "ccbc350a-0bf7-4736-9b27-1faaee31037a"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2025-10-11T13:17:43+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "8f67a34d-6baa-411e-9888-525dd0b443f8",
+        "url": "/user/1"
+      }
+    ],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "8f67a34d-6baa-411e-9888-525dd0b443f8",
+        "url": "/user/1"
+      }
+    ],
+    "title": [
+      {
+        "value": "test service"
+      }
+    ],
+    "created": [
+      {
+        "value": "2025-10-11T13:16:50+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2025-10-11T13:17:43+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": true
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [
+      {
+        "value": "\u003Cp\u003Etest\u003C/p\u003E",
+        "format": "basic_html",
+        "processed": "\u003Cp\u003Etest\u003C/p\u003E",
+        "summary": ""
+      }
+    ],
+    "field_file": [
+      {
+        "target_id": 123,
+        "display": true,
+        "description": "",
+        "target_type": "file",
+        "target_uuid": "666e5259-4909-4da2-9929-094eb5133f6a",
+        "url": "https://phpstack-1514009-5817011.cloudwaysapps.com/sites/default/files/2025-10/pexels-adrienn-638530-1537635.jpg"
+      }
+    ]
+  }

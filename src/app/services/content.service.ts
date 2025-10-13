@@ -11,9 +11,9 @@ export class ContentService {
   constructor(private http: HttpClient) { }
 
   // New method to get content by API endpoint
-  getContentByEndpoint(endpoint: string): Observable<MenuApiResponse> {
+  getContentByEndpoint(endpoint: string, filterMenuItem?: string, menuId?: string): Observable<MenuApiResponse> {
     return this.http.get<any>(endpoint).pipe(
-      map(apiResponse => this.transformApiResponse(apiResponse, endpoint)),
+      map(apiResponse => this.transformApiResponse(apiResponse, endpoint, filterMenuItem, menuId)),
       catchError(error => {
         console.error('API Error:', error);
         return of({
@@ -32,50 +32,335 @@ export class ContentService {
   }
 
   // Transform API response to our MenuContent format
-  private transformApiResponse(apiResponse: any, endpoint: string): MenuApiResponse {
+  private transformApiResponse(apiResponse: any, endpoint: string, filterMenuItem?: string, menuId?: string): MenuApiResponse {
     // Handle all Drupal API responses (starting with /api/)
     if (endpoint.startsWith('/api/') && Array.isArray(apiResponse)) {
       // Determine template type based on endpoint
-      let template: 'default' | 'activities' | 'events' | 'contact' | 'about' = 'default';
+      let template: 'default' | 'activities' | 'events' | 'contact' | 'about' | 'blog' = 'default';
       let title = 'Temple Information';
       let description = 'Content and information for our community';
+      let filteredResponse = apiResponse;
       
       if (endpoint.includes('activity-manager')) {
         template = 'activities';
         title = 'Temple Activities';
         description = 'Explore our various temple activities and programs';
-      } else if (endpoint.includes('events')) {
+      } else if (endpoint.includes('events-management')) {
         title = 'Temple Events';
         description = 'Upcoming events and celebrations';
+      } else if (endpoint.includes('article') && filterMenuItem) {
+        // Filter articles based on field_menu_item parameter
+        filteredResponse = apiResponse.filter((item: any) => {
+          const menuItemValue = this.extractDrupalValue(item.field_menu_item);
+          return menuItemValue && menuItemValue.toLowerCase() === filterMenuItem.toLowerCase();
+        });
+        
+        // If only one article, return as page type with full content
+        if (filteredResponse.length === 1) {
+          const article = filteredResponse[0];
+          const articleTitle = this.extractDrupalValue(article.title) || 'Temple Information';
+          const articleBody = this.extractDrupalValue(article.body) || 'Content coming soon.';
+          const imageField = this.extractDrupalValue(article.field_image);
+          const articleImage = imageField ? `https://phpstack-1514009-5817011.cloudwaysapps.com${imageField}` : '';
+          
+          return {
+            success: true,
+            data: {
+              id: menuId || endpoint.replace('/api/', '').replace('?_format=json', ''),
+              title: articleTitle,
+              description: this.stripHtml(articleBody.substring(0, 150)) + '...',
+              type: 'page' as const,
+              content: this.generateArticlePageContent(articleTitle, articleBody, articleImage)
+            }
+          };
+        }
+        
+        // Multiple articles - return as list
+        const contentInfo = this.getArticleContentInfo(filterMenuItem);
+        title = contentInfo.title;
+        description = contentInfo.description;
+      } else if (endpoint.includes('booking-forms')) {
+        title = 'Booking Forms';
+        description = 'Download booking forms for temple services and ceremonies';
+        template = 'default';
+      } else if (endpoint.includes('trustee-management')) {
+        title = 'Our Trustees';
+        description = 'Meet our dedicated trustees and committee members';
+      } else if (endpoint.includes('prayers')) {
+        title = 'Temple Prayers';
+        description = 'Sacred prayers and mantras';
+      } else if (endpoint.includes('services')) {
+        title = 'Temple Services';
+        description = 'Explore our various temple services and ceremonies';
       } else if (endpoint.includes('blog')) {
         title = 'Temple Blog';
         description = 'Latest news and updates from our temple';
+        template = 'blog';
       } else if (endpoint.includes('sad-announcements')) {
         title = 'Sad Announcements';
         description = 'Important announcements from our community';
       } else if (endpoint.includes('general-announcements')) {
         title = 'General Announcements';
         description = 'General announcements and updates';
-      } else if (endpoint.includes('gallery')) {
+      } else if (endpoint.includes('events-gallery')) {
         title = 'Photo Gallery';
         description = 'Beautiful moments from our temple community';
+        // Don't set template - use default which allows gallery ID matching
       }
       
       return {
         success: true,
         data: {
-          id: endpoint.replace('/api/', '').replace('?_format=json', ''),
+          id: menuId || endpoint.replace('/api/', '').replace('?_format=json', ''),
           title: title,
           description: description,
           type: 'list' as const,
           template: template,
-          items: apiResponse.map((item: any) => ({
+          items: filteredResponse.map((item: any) => {
+            // Handle booking forms (PDFs) differently
+            if (endpoint.includes('booking-forms')) {
+              // Extract PDF URL from field_attachment
+              let pdfUrl = '#';
+              if (item.field_attachment && Array.isArray(item.field_attachment) && item.field_attachment.length > 0) {
+                pdfUrl = item.field_attachment[0].url || '#';
+              }
+              
+              // Extract description from field_notes
+              const notes = this.extractDrupalValue(item.field_notes);
+              const description = notes ? this.stripHtml(notes) : 'Download this form';
+              
+              return {
+                id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+                title: this.extractDrupalValue(item.title) || 'Booking Form',
+                description: description,
+                image: '',
+                link: pdfUrl
+              };
+            }
+            
+            // Handle blog posts - show full content
+            if (endpoint.includes('blog')) {
+              const body = this.extractDrupalValue(item.body) || 'No content available.';
+              
+              return {
+                id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+                title: this.extractDrupalValue(item.title) || 'Blog Post',
+                description: body, // Full HTML content
+                image: '',
+                link: ''
+              };
+            }
+            
+            // Handle general announcements
+            if (endpoint.includes('general-announcements')) {
+              const body = this.extractDrupalValue(item.body) || 'No content available.';
+              
+              return {
+                id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+                title: this.extractDrupalValue(item.title) || 'Announcement',
+                description: body, // Full HTML content
+                image: '', // No images for announcements
+                link: ''
+              };
+            }
+            
+            // Handle sad announcements
+            if (endpoint.includes('sad-announcements')) {
+              const body = this.extractDrupalValue(item.body) || 'No content available.';
+              
+              // Extract attachment URL if available
+              let attachmentUrl = '';
+              if (item.field_attachment && Array.isArray(item.field_attachment) && item.field_attachment.length > 0) {
+                attachmentUrl = item.field_attachment[0].url || '';
+              }
+              
+              return {
+                id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+                title: this.extractDrupalValue(item.title) || 'Sad Announcement',
+                description: body, // Full HTML content
+                image: '', // No images for sad announcements
+                link: attachmentUrl // PDF attachment if available
+              };
+            }
+            
+            // Handle events
+            if (endpoint.includes('events-management')) {
+              const body = this.extractDrupalValue(item.body) || '';
+              const startDate = this.extractDrupalValue(item.field_start_date);
+              const endDate = this.extractDrupalValue(item.field_end_date);
+              const location = this.extractDrupalValue(item.field_location);
+              
+              // Extract event images from field_event_images array
+              const eventImages: string[] = [];
+              let mainEventImage = '';
+              if (item.field_event_images && Array.isArray(item.field_event_images)) {
+                item.field_event_images.forEach((img: any) => {
+                  if (img.url) {
+                    eventImages.push(img.url);
+                  }
+                });
+                // Use first image as main image
+                if (eventImages.length > 0) {
+                  mainEventImage = eventImages[0];
+                }
+              }
+              
+              // Build event details HTML
+              let eventContent = '<div class="event-details">';
+              if (startDate) {
+                const start = new Date(startDate);
+                const startFormatted = `${start.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} at ${start.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
+                
+                if (endDate) {
+                  const end = new Date(endDate);
+                  const endFormatted = end.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+                  eventContent += `<p><strong><i class="fas fa-calendar me-2"></i>Date:</strong> ${startFormatted} - ${endFormatted}</p>`;
+                } else {
+                  eventContent += `<p><strong><i class="fas fa-calendar me-2"></i>Date:</strong> ${startFormatted}</p>`;
+                }
+              }
+              if (location) {
+                eventContent += `<p><strong><i class="fas fa-location-dot me-2"></i>Location:</strong> ${location}</p>`;
+              }
+              eventContent += '</div>';
+              
+              // Add body content
+              if (body) {
+                eventContent += body;
+              }
+              
+              // Add additional images if more than one
+              if (eventImages.length > 1) {
+                eventContent += '<div class="row g-4 mt-5">';
+                eventImages.slice(1).forEach((imgUrl: string, imgIdx: number) => {
+                  eventContent += `
+                    <div class="col-6 col-md-6 col-lg-4">
+                      <div class="additional-image-wrapper" style="position: relative; overflow: hidden; border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12); cursor: pointer; height: 300px;">
+                        <img src="${imgUrl}" class="img-fluid w-100 h-100" alt="Event image ${imgIdx + 2}" style="object-fit: cover; transition: transform 0.3s ease;">
+                        <div class="image-overlay-small" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+                          <i class="fas fa-search-plus fa-2x text-white"></i>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                });
+                eventContent += '</div>';
+              }
+              
+              return {
+                id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+                title: this.extractDrupalValue(item.title) || 'Event',
+                description: eventContent,
+                image: mainEventImage, // First image as main image
+                link: ''
+              };
+            }
+            
+            // Handle trustees
+            if (endpoint.includes('trustee-management')) {
+              const designation = this.extractDrupalValue(item.field_designation) || '';
+              const category = this.extractDrupalValue(item.field_category) || '';
+              
+              // Extract trustee image from field_image
+              let trusteeImage = '';
+              if (item.field_image && Array.isArray(item.field_image) && item.field_image.length > 0) {
+                trusteeImage = item.field_image[0].url || '';
+              }
+              
+              // Build trustee content with designation
+              let trusteeContent = '';
+              if (designation) {
+                trusteeContent = `<p class="text-primary fw-bold mb-2">${designation}</p>`;
+              }
+              
+              return {
+                id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+                title: this.extractDrupalValue(item.title) || 'Trustee',
+                description: trusteeContent,
+                image: trusteeImage,
+                link: ''
+              };
+            }
+            
+            // Handle prayers
+            if (endpoint.includes('prayers')) {
+              const prayer = this.extractDrupalValue(item.field_prayer) || 'No prayer content available.';
+              const language = this.extractDrupalValue(item.field_language) || '';
+              
+              // Build prayer content with language badge
+              let prayerContent = '';
+              if (language) {
+                prayerContent += `<span class="badge bg-secondary mb-3">${language}</span>`;
+              }
+              prayerContent += prayer;
+              
+              return {
+                id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+                title: this.extractDrupalValue(item.title) || 'Prayer',
+                description: prayerContent, // Full prayer content with language
+                image: '',
+                link: ''
+              };
+            }
+            
+            // Handle gallery events
+            if (endpoint.includes('events-gallery')) {
+              const eventTitle = item.title || 'Event Gallery';
+              const eventBody = item.body || '';
+              const eventName = item.field_select_an_event || '';
+              const images = item.field_media_image || [];
+              const galleryId = item.field_select_an_event || 'gallery-item';
+              
+              // Create simple description HTML (no modals)
+              let galleryDescription = '';
+              
+              if (eventBody) {
+                galleryDescription += eventBody;
+              }
+              
+              if (eventName) {
+                galleryDescription += `<p class="text-muted mt-3"><i class="fas fa-tag me-2"></i>${eventName}</p>`;
+              }
+              
+              // Return item with images array - template will handle display
+              return {
+                id: galleryId,
+                title: eventTitle,
+                description: galleryDescription,
+                images: images, // Pass images separately
+                image: '',
+                link: ''
+              };
+            }
+            
+            // Handle services
+            if (endpoint.includes('services')) {
+              const body = this.extractDrupalValue(item.body) || 'No content available.';
+              
+              // Extract service image from field_file
+              let serviceImage = '';
+              if (item.field_file && Array.isArray(item.field_file) && item.field_file.length > 0) {
+                serviceImage = item.field_file[0].url || '';
+              }
+              
+              return {
+                id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
+                title: this.extractDrupalValue(item.title) || 'Service',
+                description: body, // Full HTML content
+                image: serviceImage,
+                link: ''
+              };
+            }
+            
+            // Default handling for other content - show full content
+            return {
             id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
             title: this.extractDrupalValue(item.title) || 'Temple Content',
-            description: this.stripHtml(this.extractDrupalValue(item.body) || 'Content description'),
-            image: this.extractDrupalValue(item.field_image) ? `https://phpstack-1514009-5817011.cloudwaysapps.com${this.extractDrupalValue(item.field_image)}` : '/assets/images/placeholder.jpg',
-            link: '#'
-          }))
+              description: this.extractDrupalValue(item.body) || 'No content available.', // Full HTML content
+              image: this.extractDrupalValue(item.field_image) ? `https://phpstack-1514009-5817011.cloudwaysapps.com${this.extractDrupalValue(item.field_image)}` : '',
+              link: ''
+            };
+          })
         }
       };
     }
@@ -181,29 +466,8 @@ export class ContentService {
   }
 
   private generatePageContent(post: any): string {
-    const englishTitle = post.title || 'Welcome to Our Temple';
     const englishContent = post.body || 'This is a sample content for our temple website. We provide spiritual guidance, community services, and cultural events for all members.';
-    
-    return `
-      <div class="hero-section">
-        <h2>${englishTitle}</h2>
-        <p>${englishContent}</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3>Spiritual Services</h3>
-          <p>Daily prayers, meditation sessions, and spiritual guidance for all community members.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Community Events</h3>
-          <p>Regular cultural celebrations, festivals, and community gatherings throughout the year.</p>
-        </div>
-        <div class="feature-card">
-          <h3>Educational Programs</h3>
-          <p>Scripture study classes, cultural education, and youth programs for all ages.</p>
-        </div>
-      </div>
-    `;
+    return `<div class="fs-6 lh-lg">${englishContent}</div>`;
   }
 
   private stripHtml(html: string): string {
@@ -213,11 +477,27 @@ export class ContentService {
   }
 
   private extractDrupalValue(field: any): string | null {
-    if (!field || !Array.isArray(field) || field.length === 0) {
+    // Handle null or undefined
+    if (!field) {
+      return null;
+    }
+    
+    // Handle direct string values
+    if (typeof field === 'string') {
+      return field;
+    }
+    
+    // Handle Drupal array structure
+    if (!Array.isArray(field) || field.length === 0) {
       return null;
     }
     
     // Handle different Drupal field structures
+    // Prefer 'processed' over 'value' for formatted HTML fields
+    if (field[0].processed !== undefined) {
+      return field[0].processed;
+    }
+    
     if (field[0].value !== undefined) {
       return field[0].value;
     }
@@ -226,49 +506,84 @@ export class ContentService {
   }
 
   private generateDrupalPageContent(item: any): string {
-    const title = this.extractDrupalValue(item.title) || 'Temple Information';
     const body = this.extractDrupalValue(item.body) || 'Content coming soon.';
     const imageField = this.extractDrupalValue(item.field_image);
     const image = imageField ? `https://phpstack-1514009-5817011.cloudwaysapps.com${imageField}` : '';
     
     return `
-      <div class="hero-section">
-        <h2>${title}</h2>
-        ${image ? `<img src="${image}" class="img-fluid mb-3" alt="${title}" style="max-height: 400px; object-fit: cover;">` : ''}
-        <div>${body}</div>
-      </div>
+      ${image ? `<img src="${image}" class="img-fluid mb-4 rounded" alt="Temple" style="max-height: 400px; object-fit: cover; width: 100%;">` : ''}
+      <div class="fs-6 lh-lg">${body}</div>
     `;
+  }
+
+  private generateArticlePageContent(title: string, body: string, image: string): string {
+    return `
+      ${image ? `<img src="${image}" class="img-fluid mb-4 rounded" alt="${title}" style="max-height: 400px; object-fit: cover; width: 100%;">` : ''}
+      <div class="fs-6 lh-lg">${body}</div>
+    `;
+  }
+
+  private getArticleContentInfo(filterMenuItem: string): { title: string; description: string } {
+    const contentMap: { [key: string]: { title: string; description: string } } = {
+      'the shrines': {
+        title: 'The Shrines',
+        description: 'Explore the sacred shrines in our temple'
+      },
+      'priest': {
+        title: 'Our Temple Priest',
+        description: 'Meet our dedicated spiritual leader'
+      },
+      'objective': {
+        title: 'Our Objectives',
+        description: 'Learn about our mission and goals'
+      },
+      'legal': {
+        title: 'Legal Disclaimer',
+        description: 'Important legal information and policies'
+      },
+      'booking forms': {
+        title: 'Booking Forms & Information',
+        description: 'Book temple services and ceremonies'
+      },
+      'become a member': {
+        title: 'Become a Member',
+        description: 'Join our temple community'
+      },
+      'vedic volunteer': {
+        title: 'Vedic Volunteer',
+        description: 'Serve the community through volunteering'
+      },
+      'school visits': {
+        title: 'School Visits',
+        description: 'Educational visits to and from our temple'
+      },
+      'donate': {
+        title: 'Donations',
+        description: 'Support our temple through donations'
+      },
+      'contact': {
+        title: 'Contact',
+        description: 'Get in touch with our temple'
+      }
+    };
+
+    const key = filterMenuItem.toLowerCase();
+    return contentMap[key] || {
+      title: 'Temple Information',
+      description: 'Content and information for our community'
+    };
   }
 
   private generateUserContent(user: any): string {
     const userName = user.name || 'Temple Member';
     const userEmail = user.email || 'contact@temple.org';
     const userPhone = user.phone || '(555) 123-4567';
-    const userAddress = user.address ? `${user.address.street}, ${user.address.city}` : 'Temple Address Available';
-    const userCompany = user.company ? user.company.name : 'Temple Community';
     
     return `
-      <div class="hero-section">
-        <h2>${userName}</h2>
-        <p>Community member and spiritual guide</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <h3>Contact Information</h3>
+      <div class="fs-6 lh-lg">
+        <h4 class="text-primary mb-3">${userName}</h4>
           <p><strong>Email:</strong> ${userEmail}</p>
           <p><strong>Phone:</strong> ${userPhone}</p>
-          <p><strong>Role:</strong> Temple Community Member</p>
-        </div>
-        <div class="feature-card">
-          <h3>Location</h3>
-          <p>${userAddress}</p>
-          <p><strong>Community:</strong> Local Temple Area</p>
-        </div>
-        <div class="feature-card">
-          <h3>Community Involvement</h3>
-          <p>Active member of ${userCompany}</p>
-          <p><strong>Services:</strong> Spiritual guidance and community support</p>
-        </div>
       </div>
     `;
   }

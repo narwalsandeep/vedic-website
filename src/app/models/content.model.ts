@@ -5,7 +5,7 @@ export interface MenuContent {
   images?: string[];
   content?: string;
   type: 'page' | 'gallery' | 'list';
-  template?: 'default' | 'activities' | 'events' | 'contact' | 'about';
+  template?: 'default' | 'activities' | 'events' | 'contact' | 'about' | 'blog';
   items?: ContentItem[];
 }
 
@@ -14,6 +14,7 @@ export interface ContentItem {
   title: string;
   description?: string;
   image?: string;
+  images?: string[]; // For gallery items
   link?: string;
 }
 

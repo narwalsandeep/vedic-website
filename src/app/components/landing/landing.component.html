@@ -62,47 +62,161 @@
 <div class="container-fluid main-content-wrapper">
   
   <!-- Loading State -->
-  <div class="container py-5" *ngIf="isLoading">
+  <div class="container py-3 py-md-5" *ngIf="isLoading">
     <div class="row justify-content-center text-center">
       <div class="col-12">
-        <div class="spinner-border text-primary" role="status">
+        <div class="spinner-border text-primary" role="status" style="width: 2rem; height: 2rem;">
           <span class="visually-hidden">Loading...</span>
         </div>
-        <p class="mt-3">Loading content...</p>
+        <p class="mt-3 fs-5 fs-md-4">Loading content...</p>
       </div>
     </div>
   </div>
 
   <!-- Dynamic Content -->
-  <div class="container py-5" *ngIf="!isLoading && currentContent">
-    <!-- Page Header -->
-    <div class="row mb-4">
+  <div class="container py-3 py-md-4 py-lg-5 px-3 px-md-4" *ngIf="!isLoading && currentContent">
+    <!-- Page Header - Centered for Events, Activities, Services, Priest, Prayer, Gallery, Objectives, Trustees, Legal, School Visits, Booking Forms, Members, Volunteer, Contact, Donate, Sad Announcement & General Announcement, Left-aligned for others -->
+    <div class="row mb-4 mb-md-5" [class.text-center]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'priest' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'objectives' || currentContent.id === 'trustees' || currentContent.id === 'legal' || currentContent.id === 'school-visits' || currentContent.id === 'booking-forms' || currentContent.id === 'members' || currentContent.id === 'volunteer' || currentContent.id === 'contact' || currentContent.id === 'donate' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement'">
       <div class="col-12">
-        <h1 class=" text-primary mb-3">{{ currentContent.title }}</h1>
-        <p class="lead text-muted mb-4">{{ currentContent.description }}</p>
+        <h1 class="text-primary mb-3" 
+            [class.display-4]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'priest' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'objectives' || currentContent.id === 'trustees' || currentContent.id === 'legal' || currentContent.id === 'school-visits' || currentContent.id === 'booking-forms' || currentContent.id === 'members' || currentContent.id === 'volunteer' || currentContent.id === 'contact' || currentContent.id === 'donate' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement'" 
+            [class.fs-2]="currentContent.id !== 'events' && currentContent.template !== 'activities' && currentContent.id !== 'services' && currentContent.id !== 'priest' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'objectives' && currentContent.id !== 'trustees' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'booking-forms' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'general-announcement'" 
+            [class.fs-md-1]="currentContent.id !== 'events' && currentContent.template !== 'activities' && currentContent.id !== 'services' && currentContent.id !== 'priest' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'objectives' && currentContent.id !== 'trustees' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'booking-forms' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'general-announcement'">
+          {{ currentContent.title }}
+        </h1>
+        <p class="lead mb-3 mb-md-4" 
+           *ngIf="currentContent.id !== 'priest' && currentContent.id !== 'objectives' && currentContent.id !== 'trustees' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'booking-forms' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate'"
+           [class.fs-5]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement'"
+           [style.color]="(currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement') ? '#4a5568' : '#6c757d'">
+          {{ currentContent.description }}
+        </p>
       </div>
     </div>
 
-    <!-- Content based on type -->
-    <div class="row" *ngIf="currentContent.type === 'page'">
+    <!-- Priest Page Template - Centered Image and Content, No Border/Shadow -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id === 'priest'">
       <div class="col-12">
+        <div class="priest-content-wrapper">
+          <div [innerHTML]="currentContent.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Objectives Page Template - Same as Priest -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id === 'objectives'">
+      <div class="col-12">
+        <div class="priest-content-wrapper">
+          <div [innerHTML]="currentContent.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal Page Template - Same as Priest -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id === 'legal'">
+      <div class="col-12">
+        <div class="priest-content-wrapper">
+          <div [innerHTML]="currentContent.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- School Visits Page Template - Same as Priest -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id === 'school-visits'">
+      <div class="col-12">
+        <div class="priest-content-wrapper">
+          <div [innerHTML]="currentContent.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Members Page Template - Same as Priest -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id === 'members'">
+      <div class="col-12">
+        <div class="priest-content-wrapper">
+          <div [innerHTML]="currentContent.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Volunteer Page Template - Same as Priest -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id === 'volunteer'">
+      <div class="col-12">
+        <div class="priest-content-wrapper">
+          <div [innerHTML]="currentContent.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Page Template - Same as Priest -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id === 'contact'">
+      <div class="col-12">
+        <div class="priest-content-wrapper">
+          <div [innerHTML]="currentContent.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Donate Page Template - Same as Priest -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id === 'donate'">
+      <div class="col-12">
+        <div class="priest-content-wrapper">
+          <div [innerHTML]="currentContent.content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content based on type - Full Page Layout (Other Pages) -->
+    <div class="row" *ngIf="currentContent.type === 'page' && currentContent.id !== 'priest' && currentContent.id !== 'objectives' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate'">
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
         <div [innerHTML]="currentContent.content"></div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Activities Template - Alternating Layout -->
-    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template === 'activities' && currentContent.items">
-      <div class="col-12 mb-4" *ngFor="let item of currentContent.items; let i = index">
-        <div class="card border-0 mt-5 mb-5">
-          <div class="row g-0 align-items-center" [class.flex-row-reverse]="i % 2 === 1">
-            <div class="col-md-6">
-              <img src="{{ item.image || '/assets/images/placeholder.jpg' }}" class=" img-fluid w-100 mh-500 rounded shadow" alt="{{ item.title }}">
+    <!-- Services Template - Elegant Layout (Same as Events/Activities) -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'services' && currentContent.items">
+      <div class="col-12">
+        <div class="mb-4 mb-md-5" *ngFor="let service of currentContent.items; let idx = index">
+          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
+            <div class="row g-0">
+              <!-- Service Image - Left Side (Large) -->
+              <div class="col-lg-5">
+                <!-- Image with modal if available -->
+                <div *ngIf="service.image" class="service-main-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px; cursor: pointer;" 
+                     data-bs-toggle="modal" [attr.data-bs-target]="'#serviceImageModal' + idx">
+                  <img [src]="service.image" class="w-100 h-100" alt="{{ service.title }}" style="object-fit: cover; transition: transform 0.3s ease;">
+                  <div class="image-overlay">
+                    <i class="fas fa-search-plus fa-2x text-white"></i>
+                  </div>
+                </div>
+                <!-- Placeholder if no image -->
+                <div *ngIf="!service.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                  <i class="fas fa-om" style="font-size: 5rem; color: #dee2e6;"></i>
+                </div>
+              </div>
+              <!-- Service Content - Right Side -->
+              <div class="col-lg-7">
+                <div class="p-3 p-md-4">
+                  <h2 class="mb-2 mb-md-3 service-title">{{ service.title }}</h2>
+                  <div class="service-content" [innerHTML]="service.description"></div>
+                </div>
+              </div>
             </div>
-            <div class="col-md-6 ">
-              <div class="card-body p-4 m-4">
-                <h5 class="card-title">{{ item.title }}</h5>
-                <p class="card-text">{{ item.description }}</p>
-                <a href="#" class="btn btn-primary" *ngIf="item.link">Learn More</a>
+          </div>
+
+          <!-- Image Modal for this service -->
+          <div class="modal fade" [id]="'serviceImageModal' + idx" tabindex="-1" aria-hidden="true" *ngIf="service.image">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+              <div class="modal-content bg-dark border-0">
+                <div class="modal-header border-0 pb-0">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                  <img [src]="service.image" class="img-fluid rounded" alt="{{ service.title }}" style="width: 100%; height: auto;">
+                </div>
               </div>
             </div>
           </div>
@@ -110,36 +224,370 @@
       </div>
     </div>
 
-    <!-- Default List Content (Other menus) -->
-    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template !== 'activities' && currentContent.items">
-      <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let item of currentContent.items">
-        <div class="card h-100">
-          <img src="{{ item.image || '/assets/images/placeholder.jpg' }}" class="card-img-top" alt="{{ item.title }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <p class="card-text" *ngIf="item.description">{{ item.description }}</p>
-            <a href="#" class="btn btn-primary" *ngIf="item.link">Learn More</a>
+    <!-- Activities Template - Elegant Layout (Similar to Events) -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template === 'activities' && currentContent.items">
+      <div class="col-12">
+        <div class="activity-item mb-4 mb-md-5" *ngFor="let activity of currentContent.items; let idx = index">
+          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
+            <div class="row g-0">
+              <!-- Activity Image - Left Side (Large) -->
+              <div class="col-lg-5">
+                <!-- Image with modal if available -->
+                <div *ngIf="activity.image" class="activity-main-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px; cursor: pointer;" 
+                     data-bs-toggle="modal" [attr.data-bs-target]="'#activityImageModal' + idx">
+                  <img [src]="activity.image" class="w-100 h-100" alt="{{ activity.title }}" style="object-fit: cover; transition: transform 0.3s ease;">
+                  <div class="image-overlay">
+                    <i class="fas fa-search-plus fa-2x text-white"></i>
+                  </div>
+                </div>
+                <!-- Placeholder if no image -->
+                <div *ngIf="!activity.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                  <i class="fas fa-hands-praying" style="font-size: 5rem; color: #dee2e6;"></i>
+                </div>
+              </div>
+              <!-- Activity Content - Right Side -->
+              <div class="col-lg-7">
+                <div class="p-3 p-md-4">
+                  <h2 class="mb-2 mb-md-3 activity-title">{{ activity.title }}</h2>
+                  <div class="activity-content" [innerHTML]="activity.description"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image Modal for this activity -->
+          <div class="modal fade" [id]="'activityImageModal' + idx" tabindex="-1" aria-hidden="true" *ngIf="activity.image">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+              <div class="modal-content bg-dark border-0">
+                <div class="modal-header border-0 pb-0">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                  <img [src]="activity.image" class="img-fluid rounded" alt="{{ activity.title }}" style="width: 100%; height: auto;">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Gallery Content -->
-    <div class="row" *ngIf="currentContent.type === 'gallery' && currentContent.images">
-      <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let image of currentContent.images">
-        <div class="card">
-          <img src="{{ image }}" class="card-img-top" alt="Gallery image" style="height: 250px; object-fit: cover;">
+    <!-- Full Width Content Template - Blog & Announcements -->
+    <div class="row" *ngIf="currentContent.type === 'list' && (currentContent.template === 'blog' || currentContent.id === 'general-announcements') && currentContent.items">
+      <div class="col-12 mb-4" *ngFor="let item of currentContent.items">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-start">
+              <div class="content-icon me-3 bg-light" *ngIf="currentContent.id === 'general-announcements'">
+                <i class="fas fa-bullhorn fa-2x text-primary"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h4 class="card-title text-primary mb-3">{{ item.title }}</h4>
+                <div class="card-text fs-6 lh-lg" [innerHTML]="item.description"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <!-- Trustees Template - 4 Per Row Grid -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'trustees' && currentContent.items">
+      <div class="col-12 col-md-6 col-lg-3 mb-4" *ngFor="let trustee of currentContent.items">
+        <div class="card border-primary shadow-sm rounded-4 h-100">
+          <div class="card-body p-3 text-center d-flex flex-column">
+            <!-- Trustee Image -->
+            <img *ngIf="trustee.image" 
+                 [src]="trustee.image" 
+                 class="img-fluid rounded-circle mx-auto mb-3" 
+                 alt="{{ trustee.title }}" 
+                 style="width: 150px; height: 150px; object-fit: cover;">
+            
+            <!-- Trustee Name -->
+            <h5 class="card-title text-primary mb-2 fw-bold">{{ trustee.title }}</h5>
+            
+            <!-- Trustee Designation/Description -->
+            <div class="card-text small lh-base mt-auto" [innerHTML]="trustee.description"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Template - Centered Layout with Image Grid and Modal -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'gallery' && currentContent.items">
+      <div class="col-12">
+        <div class="mb-4 mb-md-5" *ngFor="let gallery of currentContent.items; let galleryIdx = index">
+          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
+            <div class="card-body p-3 p-md-4 text-center">
+              <!-- Gallery Title - Centered -->
+              <h2 class="mb-2 mb-md-3 gallery-title">{{ gallery.title }}</h2>
+              
+              <!-- Gallery Description -->
+              <div class="gallery-content mb-4" *ngIf="gallery.description" [innerHTML]="gallery.description"></div>
+              
+              <!-- Gallery Images Grid -->
+              <div class="row g-3 g-md-4 justify-content-center" *ngIf="gallery.images && gallery.images.length > 0">
+                <div class="col-6 col-md-4 col-lg-3" *ngFor="let img of gallery.images; let imgIdx = index">
+                  <div class="gallery-img-card" (click)="openGalleryImage(gallery.images!, imgIdx, 'galleryModal_' + galleryIdx)" 
+                       data-bs-toggle="modal" [attr.data-bs-target]="'#galleryModal_' + galleryIdx"
+                       style="cursor: pointer; position: relative; overflow: hidden; height: 220px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: box-shadow 0.3s ease;">
+                    <img [src]="img" class="w-100 h-100" alt="Gallery image {{ imgIdx + 1 }}" style="object-fit: cover;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal for this gallery -->
+          <div class="modal fade" [id]="'galleryModal_' + galleryIdx" tabindex="-1" aria-hidden="true" *ngIf="gallery.images && gallery.images.length > 0">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+              <div class="modal-content bg-dark border-0">
+                <div class="modal-header border-0 pb-0">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-2 p-md-4 position-relative">
+                  <!-- Current Image -->
+                  <img *ngIf="currentGalleryModalId === 'galleryModal_' + galleryIdx && selectedGalleryImages.length > 0"
+                       [src]="selectedGalleryImages[selectedGalleryIndex]" 
+                       class="d-block w-100 rounded" 
+                       alt="Gallery image" 
+                       style="height: auto; max-height: 80vh; object-fit: contain;">
+                  
+                  <!-- Navigation Buttons -->
+                  <button *ngIf="currentGalleryModalId === 'galleryModal_' + galleryIdx && selectedGalleryImages.length > 1" 
+                          class="btn btn-link position-absolute top-50 start-0 translate-middle-y text-white" 
+                          (click)="previousGalleryImage()" 
+                          style="opacity: 0.8; font-size: 2rem; text-decoration: none;">
+                    <i class="fas fa-chevron-left"></i>
+                  </button>
+                  <button *ngIf="currentGalleryModalId === 'galleryModal_' + galleryIdx && selectedGalleryImages.length > 1" 
+                          class="btn btn-link position-absolute top-50 end-0 translate-middle-y text-white" 
+                          (click)="nextGalleryImage()" 
+                          style="opacity: 0.8; font-size: 2rem; text-decoration: none;">
+                    <i class="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prayers Template - Full Width Elegant Layout (Same as Events) -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'prayer' && currentContent.items">
+      <div class="col-12">
+        <div class="prayer-item mb-4 mb-md-5" *ngFor="let prayer of currentContent.items; let idx = index">
+          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
+            <div class="row g-0">
+              <!-- Prayer Image/Icon - Left Side (Large) -->
+              <div class="col-lg-5">
+                <!-- Image with modal if available -->
+                <div *ngIf="prayer.image" class="prayer-main-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px; cursor: pointer;" 
+                     data-bs-toggle="modal" [attr.data-bs-target]="'#prayerImageModal' + idx">
+                  <img [src]="prayer.image" class="w-100 h-100" alt="{{ prayer.title }}" style="object-fit: cover; transition: transform 0.3s ease;">
+                  <div class="image-overlay">
+                    <i class="fas fa-search-plus fa-2x text-white"></i>
+                  </div>
+                </div>
+                <!-- Placeholder if no image -->
+                <div *ngIf="!prayer.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                  <i class="fas fa-hands-praying" style="font-size: 5rem; color: var(--bs-primary);"></i>
+                </div>
+              </div>
+              <!-- Prayer Content - Right Side -->
+              <div class="col-lg-7">
+                <div class="p-3 p-md-4">
+                  <h2 class="mb-2 mb-md-3 prayer-title">{{ prayer.title }}</h2>
+                  <div class="prayer-content" [innerHTML]="prayer.description"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image Modal for this prayer -->
+          <div class="modal fade" [id]="'prayerImageModal' + idx" tabindex="-1" aria-hidden="true" *ngIf="prayer.image">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+              <div class="modal-content bg-dark border-0">
+                <div class="modal-header border-0 pb-0">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                  <img [src]="prayer.image" class="img-fluid rounded" alt="{{ prayer.title }}" style="width: 100%; height: auto;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Template - Full Width Elegant Layout -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'events' && currentContent.items">
+      <div class="col-12">
+        <div class="event-item mb-4 mb-md-5" *ngFor="let event of currentContent.items; let idx = index">
+          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
+            <div class="row g-0">
+              <!-- Event Image - Left Side (Large) -->
+              <div class="col-lg-5">
+                <!-- Image with modal if available -->
+                <div *ngIf="event.image" class="event-main-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px; cursor: pointer;" 
+                     data-bs-toggle="modal" [attr.data-bs-target]="'#imageModal' + idx">
+                  <img [src]="event.image" class="w-100 h-100" alt="{{ event.title }}" style="object-fit: cover; transition: transform 0.3s ease;">
+                  <div class="image-overlay">
+                    <i class="fas fa-search-plus fa-2x text-white"></i>
+                  </div>
+                </div>
+                <!-- Placeholder if no image -->
+                <div *ngIf="!event.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                  <i class="fas fa-calendar-days" style="font-size: 5rem; color: #dee2e6;"></i>
+                </div>
+              </div>
+              <!-- Event Content - Right Side (Spacious) -->
+              <div class="col-lg-7">
+                <div class="p-3 p-md-4">
+                  <h2 class="mb-2 mb-md-3 event-title">{{ event.title }}</h2>
+                  <div class="event-content" [innerHTML]="event.description"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image Modal for this event -->
+          <div class="modal fade" [id]="'imageModal' + idx" tabindex="-1" aria-hidden="true" *ngIf="event.image">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+              <div class="modal-content bg-dark border-0">
+                <div class="modal-header border-0 pb-0">
+                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                  <img [src]="event.image" class="img-fluid rounded" alt="{{ event.title }}" style="width: 100%; height: auto;">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- General Announcements Template - Elegant Layout (Same as Sad Announcements/Events) -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'general-announcement' && currentContent.items">
+      <div class="col-12">
+        <div class="mb-4 mb-md-5" *ngFor="let announcement of currentContent.items; let idx = index">
+          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
+            <div class="row g-0">
+              <!-- Announcement Icon - Left Side -->
+              <div class="col-lg-5">
+                <!-- Image if available, otherwise icon -->
+                <div *ngIf="announcement.image" class="general-announcement-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px;">
+                  <img [src]="announcement.image" class="w-100 h-100" alt="{{ announcement.title }}" style="object-fit: cover;">
+                </div>
+                <!-- Placeholder icon if no image -->
+                <div *ngIf="!announcement.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                  <i class="fas fa-bullhorn" style="font-size: 5rem; color: var(--bs-primary);"></i>
+                </div>
+              </div>
+              <!-- Announcement Content - Right Side -->
+              <div class="col-lg-7">
+                <div class="p-3 p-md-4">
+                  <h2 class="mb-2 mb-md-3 general-announcement-title">{{ announcement.title }}</h2>
+                  <div class="general-announcement-content" [innerHTML]="announcement.description"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sad Announcements Template - Elegant Layout (Same as Events/Activities) -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'sad-announcement' && currentContent.items">
+      <div class="col-12">
+        <div class="mb-4 mb-md-5" *ngFor="let announcement of currentContent.items; let idx = index">
+          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
+            <div class="row g-0">
+              <!-- Announcement Icon - Left Side -->
+              <div class="col-lg-5">
+                <!-- Image if available, otherwise icon -->
+                <div *ngIf="announcement.image" class="sad-announcement-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px;">
+                  <img [src]="announcement.image" class="w-100 h-100" alt="{{ announcement.title }}" style="object-fit: cover;">
+                </div>
+                <!-- Placeholder icon if no image -->
+                <div *ngIf="!announcement.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                  <i class="fas fa-heart-crack" style="font-size: 5rem; color: #6c757d;"></i>
+                </div>
+              </div>
+              <!-- Announcement Content - Right Side -->
+              <div class="col-lg-7">
+                <div class="p-3 p-md-4">
+                  <h2 class="mb-2 mb-md-3 sad-announcement-title">{{ announcement.title }}</h2>
+                  <div class="sad-announcement-content" [innerHTML]="announcement.description"></div>
+                  
+                  <!-- Attachment Link if available -->
+                  <a [href]="announcement.link" target="_blank" class="btn btn-outline-primary mt-3" *ngIf="announcement.link && announcement.link !== ''">
+                    <i class="fas fa-file-pdf me-2"></i>View Attachment
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Forms Template - Card Layout (Similar to Events) -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'booking-forms' && currentContent.items">
+      <div class="col-12">
+        <div class="mb-4 mb-md-5" *ngFor="let form of currentContent.items; let idx = index">
+          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
+            <div class="row g-0">
+              <!-- PDF Icon - Left Side -->
+              <div class="col-lg-3">
+                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 250px;">
+                  <i class="fas fa-file-pdf" style="font-size: 5rem; color: var(--bs-primary);"></i>
+                </div>
+              </div>
+              <!-- Form Content - Right Side -->
+              <div class="col-lg-9">
+                <div class="p-3 p-md-4">
+                  <h3 class="mb-3 text-primary">{{ form.title }}</h3>
+                  <p class="text-muted mb-4" *ngIf="form.description" [innerHTML]="form.description"></p>
+                  
+                  <!-- Download Button -->
+                  <a [href]="form.link" target="_blank" class="btn btn-lg" 
+                     style="background-color: var(--bs-primary); color: white; border-color: var(--bs-primary);"
+                     *ngIf="form.link && form.link !== '#'">
+                    <i class="fas fa-download me-2"></i>Download Form
+                  </a>
+                  <button class="btn btn-secondary btn-lg" *ngIf="!form.link || form.link === '#'" disabled>Form Not Available</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Default List Content (Other menus) - Full Width with Full Content -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template !== 'activities' && currentContent.template !== 'blog' && currentContent.id !== 'booking-forms' && currentContent.id !== 'general-announcement' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'events' && currentContent.id !== 'services' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'trustees' && currentContent.items">
+      <div class="col-12 mb-4" *ngFor="let item of currentContent.items">
+        <div class="card border shadow rounded-4">
+          <div class="card-body p-4">
+            <h4 class="card-title text-primary mb-3">{{ item.title }}</h4>
+            <img *ngIf="item.image" [src]="item.image" class="img-fluid mb-3 rounded" alt="{{ item.title }}" style="max-height: 400px; object-fit: cover; width: 100%;">
+            <div class="card-text fs-6 lh-lg" [innerHTML]="item.description"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 </div>
 
 <!-- Footer -->
-<footer class="bg-light text-center text-muted py-4">
-  <div class="container">
-    <p class="mb-0">&copy; 2024 Vedic Web. All rights reserved.</p>
+<footer class="bg-light text-center text-muted py-3 py-md-4">
+  <div class="container px-3">
+    <p class="mb-0 fs-6 fs-md-5">&copy; 2024 Vedic Web. All rights reserved.</p>
   </div>
 </footer>
