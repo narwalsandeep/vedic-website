@@ -73,21 +73,110 @@
     </div>
   </div>
 
-  <!-- Dynamic Content -->
-  <div class="container py-3 py-md-4 py-lg-5 px-3 px-md-4" *ngIf="!isLoading && currentContent">
-    <!-- Page Header - Centered for Events, Activities, Services, Priest, Prayer, Gallery, Objectives, Trustees, Legal, School Visits, Booking Forms, Members, Volunteer, Contact, Donate, Sad Announcement & General Announcement, Left-aligned for others -->
-    <div class="row mb-4 mb-md-5" [class.text-center]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'priest' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'objectives' || currentContent.id === 'trustees' || currentContent.id === 'legal' || currentContent.id === 'school-visits' || currentContent.id === 'booking-forms' || currentContent.id === 'members' || currentContent.id === 'volunteer' || currentContent.id === 'contact' || currentContent.id === 'donate' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement'">
+  <!-- Home Page Custom Template -->
+  <div *ngIf="!isLoading && currentContent && currentContent.id === 'home'">
+    <!-- Hero Banner -->
+    <div class="container py-5">
+      <div class="hero-image-wrapper rounded-4 shadow" style="position: relative; overflow: hidden; height: 400px;">
+        <img src="assets/hero.webp" alt="Vedic Temple" class="w-100 h-100" style="object-fit: cover;">
+        <div class="hero-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;">
+          <div class="text-center px-4">
+            <h1 class="display-3 fw-bold mb-3 text-white" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">Welcome to Vedic Temple</h1>
+            <p class="display-6 text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.7);">A spiritual sanctuary for peace, prayer and community</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Address & Opening Hours Section - Clean & Elegant -->
+    <div class="container py-5 my-5" style="border-bottom: 2px solid #e9ecef;">
+      <div class="row g-5">
+        <div class="col-md-6">
+          <div class="text-center p-4">
+            <i class="fas fa-map-marker-alt fa-4x text-primary mb-4"></i>
+            <h3 class="text-primary mb-4 fs-2">Temple Address</h3>
+            <p class="mb-3 fw-bold fs-5 lh-lg text-dark">79-195 Radcliffe Road, Northam,<br>Southampton. SO14 0PS.</p>
+            <p class="mb-3 fw-bold fs-4 text-primary">023 8063 2275</p>
+            <p class="mb-0 fw-bold fs-5"><a href="mailto:secretary@vedicsociety.com" class="text-primary text-decoration-none">secretary&#64;vedicsociety.com</a></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text-center p-4">
+            <i class="fas fa-clock fa-4x text-primary mb-4"></i>
+            <h3 class="text-primary mb-4 fs-2">Opening Hours</h3>
+            <p class="mb-3 fw-bold fs-4 text-dark">Monday - Saturday</p>
+            <p class="mb-2 fw-bold fs-6 text-muted">Mornings: 9am - 12noon (Aarti at 10am)</p>
+            <p class="mb-4 fw-bold fs-6 text-muted">Evenings: 3pm - 8pm (Aarti at 6:30pm)</p>
+            <p class="mb-3 fw-bold fs-4 text-dark">Sunday</p>
+            <p class="mb-2 fw-bold fs-6 text-muted">Mornings: 9:30am - 1:30pm (Aarti at 12noon)</p>
+            <p class="mb-0 fw-bold fs-6 text-muted">Evenings: 3pm - 8pm (Aarti at 6:30pm)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Our Story Section (3 Cards) - Clean & Spacious -->
+    <div class="container py-5 my-5" style="border-bottom: 2px solid #e9ecef;">
+      <div class="row g-5">
+        <div class="col-md-4">
+          <div class="text-center">
+            <img src="assets/our-history.webp" class="img-fluid rounded-4 shadow mb-4" alt="Our History" style="width: 100%; height: 280px; object-fit: cover;">
+            <h4 class="text-primary mb-4 fs-3">Our History</h4>
+            <p class="text-muted px-3">Established in 1971, the Vedic Society of Southampton began with a group of dedicated Hindus eager to preserve Sanatana Dharma. From humble home gatherings to celebrations in a Northam Church Hall, our journey reached a milestone on 11 August 1984, with the joyous inauguration of the Vedic Society Hindu Temple - a testament to our enduring commitment to traditions and community.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center">
+            <img src="assets/our-beliefs.webp" class="img-fluid rounded-4 shadow mb-4" alt="Our Beliefs" style="width: 100%; height: 280px; object-fit: cover;">
+            <h4 class="text-primary mb-4 fs-3">Our Belief</h4>
+            <p class="text-muted px-3">At the Vedic Society Hindu Temple, we cherish Hindu Sanskriti. Rooted in the ancient Indus Valley, our diverse beliefs draw from the sacred Vedas. Hindus believe that each person is intrinsically divine and the purpose of life is to seek and realize the divinity within all of us. Our celebrations, including Diwali and Holi, reflect our commitment to keeping Hindu traditions alive.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center">
+            <img src="assets/our-community.webp" class="img-fluid rounded-4 shadow mb-4" alt="Our Community" style="width: 100%; height: 280px; object-fit: cover;">
+            <h4 class="text-primary mb-4 fs-3">Our Community</h4>
+            <p class="text-muted px-3">In Southampton, our diverse Hindu community, numbering in the thousands, finds a vibrant hub in our Temple. From India, Nepal, East Africa, and beyond, we unite during festivals and activities, creating a close-knit, lively community.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Join Community Section - Clean & Centered -->
+    <div class="container py-5 my-5" >
+      <div class="text-center">
+        <h2 class="text-primary mb-4 display-6">Join Our Community</h2>
+        <p class="lead mb-5 text-muted">Stay connected with temple updates, events and spiritual teachings</p>
+        <div class="row g-4 justify-content-center">
+          <div class="col-sm-6 col-md-3">
+            <a (click)="onMenuClick('members')" class="btn btn-lg w-100" style="background-color: var(--bs-primary); color: white; border-color: var(--bs-primary); cursor: pointer;">Become a Member</a>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <a (click)="onMenuClick('volunteer')" class="btn btn-lg w-100" style="background-color: var(--bs-primary); color: white; border-color: var(--bs-primary); cursor: pointer;">Volunteer</a>
+          </div>
+          <div class="col-sm-6 col-md-3">
+            <a (click)="onMenuClick('donate')" class="btn btn-lg w-100" style="background-color: var(--bs-primary); color: white; border-color: var(--bs-primary); cursor: pointer;">Support Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Content (All Other Pages) -->
+  <div class="container py-3 py-md-4 py-lg-5 px-3 px-md-4" *ngIf="!isLoading && currentContent && currentContent.id !== 'home'">
+    <!-- Page Header - Centered for Events, Activities, Services, Priest, Prayer, Gallery, Objectives, Trustees, Legal, School Visits, Booking Forms, Members, Volunteer, Contact, Donate, Sad Announcement, General Announcement & Shrines, Left-aligned for others -->
+    <div class="row mb-4 mb-md-5" [class.text-center]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'priest' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'objectives' || currentContent.id === 'trustees' || currentContent.id === 'legal' || currentContent.id === 'school-visits' || currentContent.id === 'booking-forms' || currentContent.id === 'members' || currentContent.id === 'volunteer' || currentContent.id === 'contact' || currentContent.id === 'donate' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement' || currentContent.id === 'shrines'">
       <div class="col-12">
         <h1 class="text-primary mb-3" 
-            [class.display-4]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'priest' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'objectives' || currentContent.id === 'trustees' || currentContent.id === 'legal' || currentContent.id === 'school-visits' || currentContent.id === 'booking-forms' || currentContent.id === 'members' || currentContent.id === 'volunteer' || currentContent.id === 'contact' || currentContent.id === 'donate' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement'" 
-            [class.fs-2]="currentContent.id !== 'events' && currentContent.template !== 'activities' && currentContent.id !== 'services' && currentContent.id !== 'priest' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'objectives' && currentContent.id !== 'trustees' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'booking-forms' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'general-announcement'" 
-            [class.fs-md-1]="currentContent.id !== 'events' && currentContent.template !== 'activities' && currentContent.id !== 'services' && currentContent.id !== 'priest' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'objectives' && currentContent.id !== 'trustees' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'booking-forms' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'general-announcement'">
+            [class.display-4]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'priest' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'objectives' || currentContent.id === 'trustees' || currentContent.id === 'legal' || currentContent.id === 'school-visits' || currentContent.id === 'booking-forms' || currentContent.id === 'members' || currentContent.id === 'volunteer' || currentContent.id === 'contact' || currentContent.id === 'donate' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement' || currentContent.id === 'shrines'" 
+            [class.fs-2]="currentContent.id !== 'events' && currentContent.template !== 'activities' && currentContent.id !== 'services' && currentContent.id !== 'priest' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'objectives' && currentContent.id !== 'trustees' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'booking-forms' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'general-announcement' && currentContent.id !== 'shrines'" 
+            [class.fs-md-1]="currentContent.id !== 'events' && currentContent.template !== 'activities' && currentContent.id !== 'services' && currentContent.id !== 'priest' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'objectives' && currentContent.id !== 'trustees' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'booking-forms' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'general-announcement' && currentContent.id !== 'shrines'">
           {{ currentContent.title }}
         </h1>
         <p class="lead mb-3 mb-md-4" 
-           *ngIf="currentContent.id !== 'priest' && currentContent.id !== 'objectives' && currentContent.id !== 'trustees' && currentContent.id !== 'legal' && currentContent.id !== 'school-visits' && currentContent.id !== 'booking-forms' && currentContent.id !== 'members' && currentContent.id !== 'volunteer' && currentContent.id !== 'contact' && currentContent.id !== 'donate'"
-           [class.fs-5]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement'"
-           [style.color]="(currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement') ? '#4a5568' : '#6c757d'">
+           [class.fs-5]="currentContent.id === 'events' || currentContent.template === 'activities' || currentContent.id === 'services' || currentContent.id === 'prayer' || currentContent.id === 'gallery' || currentContent.id === 'sad-announcement' || currentContent.id === 'general-announcement' || currentContent.id === 'priest' || currentContent.id === 'objectives' || currentContent.id === 'trustees' || currentContent.id === 'legal' || currentContent.id === 'school-visits' || currentContent.id === 'booking-forms' || currentContent.id === 'members' || currentContent.id === 'volunteer' || currentContent.id === 'contact' || currentContent.id === 'donate' || currentContent.id === 'shrines'"
+           [style.color]="'#4a5568'">
           {{ currentContent.description }}
         </p>
       </div>
@@ -227,28 +316,29 @@
     <!-- Activities Template - Elegant Layout (Similar to Events) -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template === 'activities' && currentContent.items">
       <div class="col-12">
-        <div class="activity-item mb-4 mb-md-5" *ngFor="let activity of currentContent.items; let idx = index">
-          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
-            <div class="row g-0">
-              <!-- Activity Image - Left Side (Large) -->
-              <div class="col-lg-5">
+        <div class="activity-item mb-5 mb-md-6 pb-5 pb-md-6" *ngFor="let activity of currentContent.items; let idx = index; let last = last" 
+             [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'">
+          <div class="card border-0 shadow-none overflow-hidden">
+            <div class="row g-0" [class.flex-row-reverse]="idx % 2 === 1">
+              <!-- Activity Image - Alternates Left/Right -->
+              <div class="col-lg-6">
                 <!-- Image with modal if available -->
-                <div *ngIf="activity.image" class="activity-main-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px; cursor: pointer;" 
+                <div *ngIf="activity.image" class="activity-main-image" style="position: relative; height: 100%; min-height: 400px; cursor: pointer; background-color: white; padding: 1.5rem;" 
                      data-bs-toggle="modal" [attr.data-bs-target]="'#activityImageModal' + idx">
-                  <img [src]="activity.image" class="w-100 h-100" alt="{{ activity.title }}" style="object-fit: cover; transition: transform 0.3s ease;">
+                  <img [src]="activity.image" class="w-100 h-100 rounded-4" alt="{{ activity.title }}" style="object-fit: contain; transition: transform 0.3s ease;">
                   <div class="image-overlay">
                     <i class="fas fa-search-plus fa-2x text-white"></i>
                   </div>
                 </div>
                 <!-- Placeholder if no image -->
-                <div *ngIf="!activity.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                <div *ngIf="!activity.image" class="bg-light d-flex align-items-center justify-content-center rounded-4" style="height: 100%; min-height: 400px;">
                   <i class="fas fa-hands-praying" style="font-size: 5rem; color: #dee2e6;"></i>
                 </div>
               </div>
-              <!-- Activity Content - Right Side -->
-              <div class="col-lg-7">
-                <div class="p-3 p-md-4">
-                  <h2 class="mb-2 mb-md-3 activity-title">{{ activity.title }}</h2>
+              <!-- Activity Content - Alternates Right/Left (Spacious) -->
+              <div class="col-lg-6">
+                <div class="p-4 p-md-5">
+                  <h2 class="mb-3 mb-md-4 activity-title">{{ activity.title }}</h2>
                   <div class="activity-content" [innerHTML]="activity.description"></div>
                 </div>
               </div>
@@ -291,23 +381,30 @@
       </div>
     </div>
 
-    <!-- Trustees Template - 4 Per Row Grid -->
+    <!-- Trustees Template - 4 Per Row Grid (Grouped by Category) -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'trustees' && currentContent.items">
-      <div class="col-12 col-md-6 col-lg-3 mb-4" *ngFor="let trustee of currentContent.items">
-        <div class="card border-primary shadow-sm rounded-4 h-100">
-          <div class="card-body p-3 text-center d-flex flex-column">
-            <!-- Trustee Image -->
-            <img *ngIf="trustee.image" 
-                 [src]="trustee.image" 
-                 class="img-fluid rounded-circle mx-auto mb-3" 
-                 alt="{{ trustee.title }}" 
-                 style="width: 150px; height: 150px; object-fit: cover;">
-            
-            <!-- Trustee Name -->
-            <h5 class="card-title text-primary mb-2 fw-bold">{{ trustee.title }}</h5>
-            
-            <!-- Trustee Designation/Description -->
-            <div class="card-text small lh-base mt-auto" [innerHTML]="trustee.description"></div>
+      <div class="col-12" *ngFor="let category of getCategoryKeys()">
+        <!-- Category Heading -->
+        <h3 class="text-primary mb-4 mt-5 text-start fw-bold" *ngIf="category !== 'Other'">
+          {{ category }}
+        </h3>
+        
+        <!-- Trustees in this category -->
+        <div class="row mb-5">
+          <div class="col-12 col-md-6 col-lg-2 mb-4" *ngFor="let trustee of groupTrusteesByCategory()[category]">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 text-center d-flex flex-column">
+                <!-- Trustee Image -->
+                <img *ngIf="trustee.image" 
+                     [src]="trustee.image" 
+                     class="img-fluid rounded-4 mx-auto mb-3" 
+                     alt="{{ trustee.title }}" 
+                     style="width: 200px; height: 200px; object-fit: contain; background-color: white; padding: 0.5rem;">
+                
+                <!-- Trustee Name -->
+                <h5 class="card-title text-primary mb-2 fw-bold">{{ trustee.title }}</h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -425,28 +522,29 @@
     <!-- Events Template - Full Width Elegant Layout -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'events' && currentContent.items">
       <div class="col-12">
-        <div class="event-item mb-4 mb-md-5" *ngFor="let event of currentContent.items; let idx = index">
-          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
-            <div class="row g-0">
-              <!-- Event Image - Left Side (Large) -->
+        <div class="event-item mb-5 mb-md-6 pb-5 pb-md-6" *ngFor="let event of currentContent.items; let idx = index; let last = last" 
+             [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'">
+          <div class="card border-0 shadow-none overflow-hidden">
+            <div class="row g-0" [class.flex-row-reverse]="idx % 2 === 1">
+              <!-- Event Image - Alternates Left/Right -->
               <div class="col-lg-5">
                 <!-- Image with modal if available -->
-                <div *ngIf="event.image" class="event-main-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px; cursor: pointer;" 
+                <div *ngIf="event.image" class="event-main-image" style="position: relative; height: 100%; min-height: 400px; cursor: pointer; background-color: white; padding: 1.5rem;" 
                      data-bs-toggle="modal" [attr.data-bs-target]="'#imageModal' + idx">
-                  <img [src]="event.image" class="w-100 h-100" alt="{{ event.title }}" style="object-fit: cover; transition: transform 0.3s ease;">
+                  <img [src]="event.image" class="w-100 h-100 rounded-4" alt="{{ event.title }}" style="object-fit: contain; transition: transform 0.3s ease;">
                   <div class="image-overlay">
                     <i class="fas fa-search-plus fa-2x text-white"></i>
                   </div>
                 </div>
                 <!-- Placeholder if no image -->
-                <div *ngIf="!event.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                <div *ngIf="!event.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 400px;">
                   <i class="fas fa-calendar-days" style="font-size: 5rem; color: #dee2e6;"></i>
                 </div>
               </div>
-              <!-- Event Content - Right Side (Spacious) -->
+              <!-- Event Content - Alternates Right/Left (Spacious) -->
               <div class="col-lg-7">
-                <div class="p-3 p-md-4">
-                  <h2 class="mb-2 mb-md-3 event-title">{{ event.title }}</h2>
+                <div class="p-4 p-md-5">
+                  <h2 class="mb-3 mb-md-4 event-title">{{ event.title }}</h2>
                   <div class="event-content" [innerHTML]="event.description"></div>
                 </div>
               </div>
@@ -568,8 +666,30 @@
       </div>
     </div>
 
+    <!-- Temple/Shrines Template - 3 Per Row Grid (Multiple shrines with field_menu_item = "The Shrines") -->
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'shrines' && currentContent.items">
+      <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let shrine of currentContent.items">
+        <div class="card border-0 shadow-sm rounded-4 h-100">
+          <div class="card-body p-3 text-center d-flex flex-column">
+            <!-- Shrine Image -->
+            <img *ngIf="shrine.image" 
+                 [src]="shrine.image" 
+                 class="img-fluid rounded-4 mx-auto mb-3" 
+                 alt="{{ shrine.title }}" 
+                 style="width: 100%; height: 250px; object-fit: cover;">
+            
+            <!-- Shrine Title -->
+            <h4 class="card-title text-primary mb-3 fw-bold">{{ shrine.title }}</h4>
+            
+            <!-- Shrine Description -->
+            <div class="card-text lh-base text-start flex-grow-1" [innerHTML]="shrine.description"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Default List Content (Other menus) - Full Width with Full Content -->
-    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template !== 'activities' && currentContent.template !== 'blog' && currentContent.id !== 'booking-forms' && currentContent.id !== 'general-announcement' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'events' && currentContent.id !== 'services' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'trustees' && currentContent.items">
+    <div class="row" *ngIf="currentContent.type === 'list' && currentContent.template !== 'activities' && currentContent.template !== 'blog' && currentContent.id !== 'booking-forms' && currentContent.id !== 'general-announcement' && currentContent.id !== 'sad-announcement' && currentContent.id !== 'events' && currentContent.id !== 'services' && currentContent.id !== 'prayer' && currentContent.id !== 'gallery' && currentContent.id !== 'trustees' && currentContent.id !== 'shrines' && currentContent.items">
       <div class="col-12 mb-4" *ngFor="let item of currentContent.items">
         <div class="card border shadow rounded-4">
           <div class="card-body p-4">
@@ -585,9 +705,67 @@
 
 </div>
 
-<!-- Footer -->
-<footer class="bg-light text-center text-muted py-3 py-md-4">
-  <div class="container px-3">
-    <p class="mb-0 fs-6 fs-md-5">&copy; 2024 Vedic Web. All rights reserved.</p>
+<!-- Footer - Dark & Comprehensive -->
+<footer class="bg-primary text-white mt-auto">
+  <div class="container py-5">
+    <div class="row g-4">
+      <!-- About Section -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-white mb-3 fw-bold">Vedic Society Hindu Temple</h5>
+        <p class="mb-3">A spiritual sanctuary dedicated to preserving Sanatana Dharma and serving our community since 1971.</p>
+        <div class="mb-2">
+          <i class="fas fa-map-marker-alt me-2"></i>
+          <span>79-195 Radcliffe Road, Southampton</span>
+        </div>
+        <div class="mb-2">
+          <i class="fas fa-phone me-2"></i>
+          <span>023 8063 2275</span>
+        </div>
+        <div>
+          <i class="fas fa-envelope me-2"></i>
+          <a href="mailto:secretary@vedicsociety.com" class="text-white text-decoration-none">secretary&#64;vedicsociety.com</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-white mb-3 fw-bold">Quick Links</h5>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a (click)="onMenuClick('events')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Events</a></li>
+          <li class="mb-2"><a (click)="onMenuClick('activities')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Activities</a></li>
+          <li class="mb-2"><a (click)="onMenuClick('services')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Services</a></li>
+          <li class="mb-2"><a (click)="onMenuClick('prayer')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Prayers</a></li>
+          <li class="mb-2"><a (click)="onMenuClick('trustees')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Trustees</a></li>
+          <li class="mb-2"><a (click)="onMenuClick('gallery')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Gallery</a></li>
+        </ul>
+      </div>
+
+      <!-- Opening Hours -->
+      <div class="col-md-4 mb-4">
+        <h5 class="text-white mb-3 fw-bold">Opening Hours</h5>
+        <div class="mb-3">
+          <p class="mb-1 fw-bold">Monday - Saturday</p>
+          <p class="mb-1 small">Mornings: 9am - 12noon</p>
+          <p class="mb-0 small">Evenings: 3pm - 8pm</p>
+        </div>
+        <div>
+          <p class="mb-1 fw-bold">Sunday</p>
+          <p class="mb-1 small">Mornings: 9:30am - 1:30pm</p>
+          <p class="mb-0 small">Evenings: 3pm - 8pm</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+    <div class="row">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <p class="mb-0">&copy; 2024 Vedic Society Hindu Temple. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a (click)="onMenuClick('legal')" class="text-white text-decoration-none me-3" style="cursor: pointer;">Legal</a>
+        <a (click)="onMenuClick('contact')" class="text-white text-decoration-none" style="cursor: pointer;">Contact</a>
+      </div>
+    </div>
   </div>
 </footer>

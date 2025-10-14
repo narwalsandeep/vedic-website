@@ -34,6 +34,19 @@ export class LandingComponent implements OnInit, AfterViewInit {
     this.isLoading = true;
     this.activeMenuId = menuId;
     
+    // Handle home page statically (no API call needed)
+    if (menuId === 'home') {
+      this.currentContent = {
+        id: 'home',
+        title: 'Welcome to Vedic Temple',
+        description: 'Your spiritual home for worship, community and growth',
+        type: 'page',
+        content: ''
+      };
+      this.isLoading = false;
+      return;
+    }
+    
     // Find the menu item to get its endpoint
     const menuItem = this.findMenuItem(menuId);
     if (menuItem && menuItem.endpoint) {
@@ -142,7 +155,7 @@ export class LandingComponent implements OnInit, AfterViewInit {
       endpoint: '/api/article?_format=json',
       filterMenuItem: 'The Shrines',
       submenu: [
-        { title: 'Temple', id: 'temple', endpoint: '/api/article?_format=json', filterMenuItem: 'The Shrines' },
+        { title: 'Shrines', id: 'shrines', endpoint: '/api/article?_format=json', filterMenuItem: 'The Shrines' },
         { title: 'Priest', id: 'priest', endpoint: '/api/article?_format=json', filterMenuItem: 'Priest' },
         { title: 'Prayer', id: 'prayer', endpoint: '/api/prayers?_format=json' },
         { title: 'Gallery', id: 'gallery', endpoint: '/api/events-gallery?_format=json' }
@@ -202,4 +215,51 @@ export class LandingComponent implements OnInit, AfterViewInit {
       ]
     }
   ];
+
+  // Helper method to group trustees by category/designation
+  groupTrusteesByCategory(): { [category: string]: any[] } {
+    if (!this.currentContent?.items) {
+      return {};
+    }
+    
+    const grouped: { [category: string]: any[] } = {};
+    this.currentContent.items.forEach(trustee => {
+      const category = trustee.category || 'Other';
+      if (!grouped[category]) {
+        grouped[category] = [];
+      }
+      grouped[category].push(trustee);
+    });
+    
+    return grouped;
+  }
+
+  // Helper method to get category keys in sorted order
+  getCategoryKeys(): string[] {
+    const grouped = this.groupTrusteesByCategory();
+    const keys = Object.keys(grouped);
+    
+    // Define preferred order
+    const order = ['Holding Trustee - Chair', 'Holding Trustee', 'Executive Committee member', 'Other'];
+    
+    return keys.sort((a, b) => {
+      const indexA = order.indexOf(a);
+      const indexB = order.indexOf(b);
+      
+      // If both are in the order array, sort by their position
+      if (indexA !== -1 && indexB !== -1) {
+        return indexA - indexB;
+      }
+      // If only a is in the order, it comes first
+      if (indexA !== -1) {
+        return -1;
+      }
+      // If only b is in the order, it comes first
+      if (indexB !== -1) {
+        return 1;
+      }
+      // Otherwise, sort alphabetically
+      return a.localeCompare(b);
+    });
+  }
 }

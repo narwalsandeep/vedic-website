@@ -133,6 +133,31 @@
 }
 
 // Gallery item hover effects
+// Home page specific styles
+.home-page-wrapper {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  
+  .hero-banner {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
+  }
+}
+
+// Quick links button styling
+.btn-outline-primary {
+  color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  
+  &:hover {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    color: white;
+  }
+}
+
 // Use Bootstrap utility classes for all content styling
 // Minimal custom styles for special elements only
 ::ng-deep .card-body {
@@ -527,7 +552,7 @@
   }
 
   .carousel-item {
-    text-align: center;
+      text-align: center;
   }
 }
 
@@ -761,6 +786,6 @@
 
     &:hover .image-overlay-small {
       opacity: 1 !important;
+      }
     }
   }
-}

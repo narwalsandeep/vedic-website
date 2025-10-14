@@ -16,6 +16,7 @@ export interface ContentItem {
   image?: string;
   images?: string[]; // For gallery items
   link?: string;
+  category?: string; // For grouping items (e.g., trustee categories)
 }
 
 export interface MenuApiResponse {

@@ -44,10 +44,10 @@ export class ContentService {
       if (endpoint.includes('activity-manager')) {
         template = 'activities';
         title = 'Temple Activities';
-        description = 'Explore our various temple activities and programs';
+        description = 'Discover our vibrant spiritual activities and community programs';
       } else if (endpoint.includes('events-management')) {
         title = 'Temple Events';
-        description = 'Upcoming events and celebrations';
+        description = 'Join us for upcoming festivals, ceremonies and special celebrations';
       } else if (endpoint.includes('article') && filterMenuItem) {
         // Filter articles based on field_menu_item parameter
         filteredResponse = apiResponse.filter((item: any) => {
@@ -63,12 +63,15 @@ export class ContentService {
           const imageField = this.extractDrupalValue(article.field_image);
           const articleImage = imageField ? `https://phpstack-1514009-5817011.cloudwaysapps.com${imageField}` : '';
           
+          // Get proper title and description from our content info map
+          const contentInfo = this.getArticleContentInfo(filterMenuItem);
+          
           return {
             success: true,
             data: {
               id: menuId || endpoint.replace('/api/', '').replace('?_format=json', ''),
-              title: articleTitle,
-              description: this.stripHtml(articleBody.substring(0, 150)) + '...',
+              title: contentInfo.title || articleTitle,
+              description: contentInfo.description,
               type: 'page' as const,
               content: this.generateArticlePageContent(articleTitle, articleBody, articleImage)
             }
@@ -81,42 +84,34 @@ export class ContentService {
         description = contentInfo.description;
       } else if (endpoint.includes('booking-forms')) {
         title = 'Booking Forms';
-        description = 'Download booking forms for temple services and ceremonies';
+        description = 'Download forms for poojas, ceremonies and temple services';
         template = 'default';
       } else if (endpoint.includes('trustee-management')) {
         title = 'Our Trustees';
-        description = 'Meet our dedicated trustees and committee members';
+        description = 'Meet the dedicated leaders guiding our temple community';
       } else if (endpoint.includes('prayers')) {
         title = 'Temple Prayers';
-        description = 'Sacred prayers and mantras';
+        description = 'Sacred prayers, mantras and devotional texts for your spiritual journey';
       } else if (endpoint.includes('services')) {
         title = 'Temple Services';
-        description = 'Explore our various temple services and ceremonies';
+        description = 'Comprehensive range of spiritual services and ceremonies we offer';
       } else if (endpoint.includes('blog')) {
         title = 'Temple Blog';
-        description = 'Latest news and updates from our temple';
+        description = 'Stories, insights and updates from our vibrant temple community';
         template = 'blog';
       } else if (endpoint.includes('sad-announcements')) {
         title = 'Sad Announcements';
-        description = 'Important announcements from our community';
+        description = 'Condolences and memorial notices for our departed community members';
       } else if (endpoint.includes('general-announcements')) {
         title = 'General Announcements';
-        description = 'General announcements and updates';
+        description = 'Important updates and news for our temple community';
       } else if (endpoint.includes('events-gallery')) {
         title = 'Photo Gallery';
-        description = 'Beautiful moments from our temple community';
+        description = 'Cherished moments and memories from our temple events and celebrations';
         // Don't set template - use default which allows gallery ID matching
       }
       
-      return {
-        success: true,
-        data: {
-          id: menuId || endpoint.replace('/api/', '').replace('?_format=json', ''),
-          title: title,
-          description: description,
-          type: 'list' as const,
-          template: template,
-          items: filteredResponse.map((item: any) => {
+      const items = filteredResponse.map((item: any) => {
             // Handle booking forms (PDFs) differently
             if (endpoint.includes('booking-forms')) {
               // Extract PDF URL from field_attachment
@@ -258,8 +253,9 @@ export class ContentService {
             
             // Handle trustees
             if (endpoint.includes('trustee-management')) {
-              const designation = this.extractDrupalValue(item.field_designation) || '';
+              const designation = this.extractDrupalValue(item.field_designation) || 'Other';
               const category = this.extractDrupalValue(item.field_category) || '';
+              const order = this.extractDrupalValue(item.field_order) || 999;
               
               // Extract trustee image from field_image
               let trusteeImage = '';
@@ -278,6 +274,7 @@ export class ContentService {
                 title: this.extractDrupalValue(item.title) || 'Trustee',
                 description: trusteeContent,
                 image: trusteeImage,
+                category: designation,
                 link: ''
               };
             }
@@ -360,7 +357,20 @@ export class ContentService {
               image: this.extractDrupalValue(item.field_image) ? `https://phpstack-1514009-5817011.cloudwaysapps.com${this.extractDrupalValue(item.field_image)}` : '',
               link: ''
             };
-          })
+          });
+      
+      // Reverse items for activities to show newest first
+      const finalItems = endpoint.includes('activity-manager') ? items.reverse() : items;
+      
+      return {
+        success: true,
+        data: {
+          id: menuId || endpoint.replace('/api/', '').replace('?_format=json', ''),
+          title: title,
+          description: description,
+          type: 'list' as const,
+          template: template,
+          items: finalItems
         }
       };
     }
@@ -527,43 +537,43 @@ export class ContentService {
     const contentMap: { [key: string]: { title: string; description: string } } = {
       'the shrines': {
         title: 'The Shrines',
-        description: 'Explore the sacred shrines in our temple'
+        description: 'Discover the sacred deities and divine shrines in our temple'
       },
       'priest': {
         title: 'Our Temple Priest',
-        description: 'Meet our dedicated spiritual leader'
+        description: 'Meet our revered spiritual guide and temple priest'
       },
       'objective': {
         title: 'Our Objectives',
-        description: 'Learn about our mission and goals'
+        description: 'Understanding our mission, vision and spiritual goals'
       },
       'legal': {
-        title: 'Legal Disclaimer',
-        description: 'Important legal information and policies'
+        title: 'Legal Information',
+        description: 'Important legal information, policies and disclaimers'
       },
       'booking forms': {
-        title: 'Booking Forms & Information',
-        description: 'Book temple services and ceremonies'
+        title: 'Booking Forms',
+        description: 'Download forms for temple services and ceremonies'
       },
       'become a member': {
         title: 'Become a Member',
-        description: 'Join our temple community'
+        description: 'Join our spiritual family and be part of our temple community'
       },
       'vedic volunteer': {
-        title: 'Vedic Volunteer',
-        description: 'Serve the community through volunteering'
+        title: 'Volunteer With Us',
+        description: 'Contribute your time and skills in service to the divine'
       },
       'school visits': {
         title: 'School Visits',
-        description: 'Educational visits to and from our temple'
+        description: 'Educational and cultural programs for schools and students'
       },
       'donate': {
-        title: 'Donations',
-        description: 'Support our temple through donations'
+        title: 'Support Our Temple',
+        description: 'Help us continue our spiritual mission through your generous contributions'
       },
       'contact': {
-        title: 'Contact',
-        description: 'Get in touch with our temple'
+        title: 'Contact Us',
+        description: 'Reach out to us for any questions, guidance or assistance'
       }
     };
 
