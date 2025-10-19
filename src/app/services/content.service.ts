@@ -12,7 +12,12 @@ export class ContentService {
 
   // New method to get content by API endpoint
   getContentByEndpoint(endpoint: string, filterMenuItem?: string, menuId?: string): Observable<MenuApiResponse> {
-    return this.http.get<any>(endpoint).pipe(
+    // Add timestamp to prevent caching
+    const timestamp = Date.now();
+    const separator = endpoint.includes('?') ? '&' : '?';
+    const endpointWithTimestamp = `${endpoint}${separator}_t=${timestamp}`;
+    
+    return this.http.get<any>(endpointWithTimestamp).pipe(
       map(apiResponse => this.transformApiResponse(apiResponse, endpoint, filterMenuItem, menuId)),
       catchError(error => {
         console.error('API Error:', error);

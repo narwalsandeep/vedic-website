@@ -265,31 +265,32 @@
       </div>
     </div>
 
-    <!-- Services Template - Elegant Layout (Same as Events/Activities) -->
+    <!-- Services Template - Elegant Layout (Same as Events) -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'services' && currentContent.items">
       <div class="col-12">
-        <div class="mb-4 mb-md-5" *ngFor="let service of currentContent.items; let idx = index">
-          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
-            <div class="row g-0">
-              <!-- Service Image - Left Side (Large) -->
+        <div class="service-item mb-5 mb-md-6 pb-5 pb-md-6" *ngFor="let service of currentContent.items; let idx = index; let last = last" 
+             [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'">
+          <div class="card border-0 shadow-none overflow-hidden">
+            <div class="row g-0" [class.flex-row-reverse]="idx % 2 === 1">
+              <!-- Service Image - Alternates Left/Right -->
               <div class="col-lg-5">
                 <!-- Image with modal if available -->
-                <div *ngIf="service.image" class="service-main-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px; cursor: pointer;" 
+                <div *ngIf="service.image" class="service-main-image" style="position: relative; height: 100%; min-height: 400px; cursor: pointer; display: flex; align-items: center; justify-content: center;" 
                      data-bs-toggle="modal" [attr.data-bs-target]="'#serviceImageModal' + idx">
-                  <img [src]="service.image" class="w-100 h-100" alt="{{ service.title }}" style="object-fit: cover; transition: transform 0.3s ease;">
+                  <img [src]="service.image" class="rounded-4 shadow" alt="{{ service.title }}" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
                   <div class="image-overlay">
                     <i class="fas fa-search-plus fa-2x text-white"></i>
                   </div>
                 </div>
                 <!-- Placeholder if no image -->
-                <div *ngIf="!service.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
+                <div *ngIf="!service.image" class="bg-light d-flex align-items-center justify-content-center rounded-4" style="height: 100%; min-height: 400px;">
                   <i class="fas fa-om" style="font-size: 5rem; color: #dee2e6;"></i>
                 </div>
               </div>
-              <!-- Service Content - Right Side -->
+              <!-- Service Content - Alternates Right/Left (Spacious) -->
               <div class="col-lg-7">
-                <div class="p-3 p-md-4">
-                  <h2 class="mb-2 mb-md-3 service-title">{{ service.title }}</h2>
+                <div class="p-4 p-md-5">
+                  <h2 class="mb-3 mb-md-4 service-title">{{ service.title }}</h2>
                   <div class="service-content" [innerHTML]="service.description"></div>
                 </div>
               </div>
@@ -323,9 +324,9 @@
               <!-- Activity Image - Alternates Left/Right -->
               <div class="col-lg-6">
                 <!-- Image with modal if available -->
-                <div *ngIf="activity.image" class="activity-main-image" style="position: relative; height: 100%; min-height: 400px; cursor: pointer; background-color: white; padding: 1.5rem;" 
+                <div *ngIf="activity.image" class="activity-main-image" style="position: relative; height: 100%; min-height: 400px; cursor: pointer; display: flex; align-items: center; justify-content: center;" 
                      data-bs-toggle="modal" [attr.data-bs-target]="'#activityImageModal' + idx">
-                  <img [src]="activity.image" class="w-100 h-100 rounded-4" alt="{{ activity.title }}" style="object-fit: contain; transition: transform 0.3s ease;">
+                  <img [src]="activity.image" class="rounded-4 shadow" alt="{{ activity.title }}" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
                   <div class="image-overlay">
                     <i class="fas fa-search-plus fa-2x text-white"></i>
                   </div>
@@ -413,24 +414,21 @@
     <!-- Gallery Template - Centered Layout with Image Grid and Modal -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'gallery' && currentContent.items">
       <div class="col-12">
-        <div class="mb-4 mb-md-5" *ngFor="let gallery of currentContent.items; let galleryIdx = index">
-          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
-            <div class="card-body p-3 p-md-4 text-center">
-              <!-- Gallery Title - Centered -->
-              <h2 class="mb-2 mb-md-3 gallery-title">{{ gallery.title }}</h2>
-              
-              <!-- Gallery Description -->
-              <div class="gallery-content mb-4" *ngIf="gallery.description" [innerHTML]="gallery.description"></div>
-              
-              <!-- Gallery Images Grid -->
-              <div class="row g-3 g-md-4 justify-content-center" *ngIf="gallery.images && gallery.images.length > 0">
-                <div class="col-6 col-md-4 col-lg-3" *ngFor="let img of gallery.images; let imgIdx = index">
-                  <div class="gallery-img-card" (click)="openGalleryImage(gallery.images!, imgIdx, 'galleryModal_' + galleryIdx)" 
-                       data-bs-toggle="modal" [attr.data-bs-target]="'#galleryModal_' + galleryIdx"
-                       style="cursor: pointer; position: relative; overflow: hidden; height: 220px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: box-shadow 0.3s ease;">
-                    <img [src]="img" class="w-100 h-100" alt="Gallery image {{ imgIdx + 1 }}" style="object-fit: cover;">
-                  </div>
-                </div>
+        <div class="mb-5 mb-md-6 pb-5 pb-md-6" *ngFor="let gallery of currentContent.items; let galleryIdx = index; let last = last" 
+             [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'">
+          <!-- Gallery Title - Centered -->
+          <h2 class="mb-3 mb-md-4 text-center gallery-title">{{ gallery.title }}</h2>
+          
+          <!-- Gallery Description -->
+          <div class="gallery-content mb-4 mb-md-5 text-center" *ngIf="gallery.description" [innerHTML]="gallery.description"></div>
+          
+          <!-- Gallery Images Grid -->
+          <div class="row g-3" *ngIf="gallery.images && gallery.images.length > 0">
+            <div class="col-4 col-md-3" [style.flex]="'0 0 12.5%'" [style.max-width]="'12.5%'" *ngFor="let img of gallery.images; let imgIdx = index">
+              <div class="gallery-img-card shadow" (click)="openGalleryImage(gallery.images!, imgIdx, 'galleryModal_' + galleryIdx)" 
+                   data-bs-toggle="modal" [attr.data-bs-target]="'#galleryModal_' + galleryIdx"
+                   style="cursor: pointer; position: relative; overflow: hidden; height: 150px; border-radius: 8px; transition: transform 0.3s ease;">
+                <img [src]="img" class="w-100 h-100" alt="Gallery image {{ imgIdx + 1 }}" style="object-fit: cover; display: block;">
               </div>
             </div>
           </div>
@@ -529,9 +527,9 @@
               <!-- Event Image - Alternates Left/Right -->
               <div class="col-lg-5">
                 <!-- Image with modal if available -->
-                <div *ngIf="event.image" class="event-main-image" style="position: relative; height: 100%; min-height: 400px; cursor: pointer; background-color: white; padding: 1.5rem;" 
+                <div *ngIf="event.image" class="event-main-image" style="position: relative; height: 100%; min-height: 400px; cursor: pointer; display: flex; align-items: center; justify-content: center;" 
                      data-bs-toggle="modal" [attr.data-bs-target]="'#imageModal' + idx">
-                  <img [src]="event.image" class="w-100 h-100 rounded-4" alt="{{ event.title }}" style="object-fit: contain; transition: transform 0.3s ease;">
+                  <img [src]="event.image" class="rounded-4 shadow" alt="{{ event.title }}" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.3s ease;">
                   <div class="image-overlay">
                     <i class="fas fa-search-plus fa-2x text-white"></i>
                   </div>
@@ -632,6 +630,7 @@
         </div>
       </div>
     </div>
+    
 
     <!-- Booking Forms Template - Card Layout (Similar to Events) -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'booking-forms' && currentContent.items">
@@ -666,20 +665,20 @@
       </div>
     </div>
 
-    <!-- Temple/Shrines Template - 3 Per Row Grid (Multiple shrines with field_menu_item = "The Shrines") -->
+    <!-- Temple/Shrines Template - 2 Per Row Grid (Multiple shrines with field_menu_item = "The Shrines") -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'shrines' && currentContent.items">
-      <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let shrine of currentContent.items">
-        <div class="card border-0 shadow-sm rounded-4 h-100">
-          <div class="card-body p-3 text-center d-flex flex-column">
+      <div class="col-12 col-md-6 col-lg-6 mb-5 mb-md-6" *ngFor="let shrine of currentContent.items">
+        <div class="card border-0 shadow-none h-100">
+          <div class="card-body p-4 p-md-5 text-center d-flex flex-column">
             <!-- Shrine Image -->
             <img *ngIf="shrine.image" 
                  [src]="shrine.image" 
-                 class="img-fluid rounded-4 mx-auto mb-3" 
+                 class="img-fluid rounded-4 shadow mx-auto mb-4" 
                  alt="{{ shrine.title }}" 
-                 style="width: 100%; height: 250px; object-fit: cover;">
+                 style="width: 100%; height: 300px; object-fit: cover;">
             
             <!-- Shrine Title -->
-            <h4 class="card-title text-primary mb-3 fw-bold">{{ shrine.title }}</h4>
+            <h4 class="card-title text-primary mb-4 fw-bold">{{ shrine.title }}</h4>
             
             <!-- Shrine Description -->
             <div class="card-text lh-base text-start flex-grow-1" [innerHTML]="shrine.description"></div>
