@@ -161,6 +161,25 @@
         </div>
       </div>
     </div>
+
+    <!-- Donation Section - Clean & Spacious -->
+    <div class="container py-5 my-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-6">
+          <div class="text-center p-5">
+            <div class="mb-4">
+              <i class="fas fa-hands-holding-heart" style="font-size: 4rem; color: var(--bs-primary);"></i>
+            </div>
+            <h2 class="text-primary mb-4 display-6">Support Our Temple</h2>
+            <p class="lead mb-4 text-muted">Your generous contributions help us maintain the temple, support community programs, and preserve our sacred traditions for future generations.</p>
+            <p class="text-muted mb-5">Every donation, no matter the size, makes a meaningful difference in our community's spiritual journey.</p>
+            <a href="https://wonderful.org/pay?ref=263969" target="_blank" class="btn btn-lg px-5 py-3" style="background-color: var(--bs-primary); color: white; border-color: var(--bs-primary); font-size: 1.25rem;">
+              <i class="fas fa-heart me-2"></i>Donate Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Dynamic Content (All Other Pages) -->
@@ -417,10 +436,7 @@
         <div class="mb-5 mb-md-6 pb-5 pb-md-6" *ngFor="let gallery of currentContent.items; let galleryIdx = index; let last = last" 
              [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'">
           <!-- Gallery Title - Centered -->
-          <h2 class="mb-3 mb-md-4 text-center gallery-title">{{ gallery.title }}</h2>
-          
-          <!-- Gallery Description -->
-          <div class="gallery-content mb-4 mb-md-5 text-center" *ngIf="gallery.description" [innerHTML]="gallery.description"></div>
+          <h2 class="mb-4 mb-md-5 text-center gallery-title">{{ gallery.title }}</h2>
           
           <!-- Gallery Images Grid -->
           <div class="row g-3" *ngIf="gallery.images && gallery.images.length > 0">
@@ -469,48 +485,21 @@
       </div>
     </div>
 
-    <!-- Prayers Template - Full Width Elegant Layout (Same as Events) -->
+    <!-- Prayers Template - Simple List with Small Icons -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'prayer' && currentContent.items">
       <div class="col-12">
-        <div class="prayer-item mb-4 mb-md-5" *ngFor="let prayer of currentContent.items; let idx = index">
-          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
-            <div class="row g-0">
-              <!-- Prayer Image/Icon - Left Side (Large) -->
-              <div class="col-lg-5">
-                <!-- Image with modal if available -->
-                <div *ngIf="prayer.image" class="prayer-main-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px; cursor: pointer;" 
-                     data-bs-toggle="modal" [attr.data-bs-target]="'#prayerImageModal' + idx">
-                  <img [src]="prayer.image" class="w-100 h-100" alt="{{ prayer.title }}" style="object-fit: cover; transition: transform 0.3s ease;">
-                  <div class="image-overlay">
-                    <i class="fas fa-search-plus fa-2x text-white"></i>
-                  </div>
-                </div>
-                <!-- Placeholder if no image -->
-                <div *ngIf="!prayer.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
-                  <i class="fas fa-hands-praying" style="font-size: 5rem; color: var(--bs-primary);"></i>
-                </div>
-              </div>
-              <!-- Prayer Content - Right Side -->
-              <div class="col-lg-7">
-                <div class="p-3 p-md-4">
-                  <h2 class="mb-2 mb-md-3 prayer-title">{{ prayer.title }}</h2>
-                  <div class="prayer-content" [innerHTML]="prayer.description"></div>
-                </div>
+        <div class="prayer-item py-4" [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'" *ngFor="let prayer of currentContent.items; let idx = index; let last = last">
+          <div class="d-flex align-items-start">
+            <!-- Small Prayer Icon -->
+            <div class="flex-shrink-0 me-4">
+              <div class="bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                <i class="fas fa-hands-praying" style="font-size: 1.5rem; color: var(--bs-primary);"></i>
               </div>
             </div>
-          </div>
-
-          <!-- Image Modal for this prayer -->
-          <div class="modal fade" [id]="'prayerImageModal' + idx" tabindex="-1" aria-hidden="true" *ngIf="prayer.image">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-              <div class="modal-content bg-dark border-0">
-                <div class="modal-header border-0 pb-0">
-                  <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                  <img [src]="prayer.image" class="img-fluid rounded" alt="{{ prayer.title }}" style="width: 100%; height: auto;">
-                </div>
-              </div>
+            <!-- Prayer Content -->
+            <div class="flex-grow-1">
+              <h3 class="mb-3 prayer-title" style="font-size: 1.5rem;">{{ prayer.title }}</h3>
+              <div class="prayer-content" [innerHTML]="prayer.description"></div>
             </div>
           </div>
         </div>
@@ -566,30 +555,15 @@
       </div>
     </div>
 
-    <!-- General Announcements Template - Elegant Layout (Same as Sad Announcements/Events) -->
+    <!-- General Announcements Template - Content Only (No Images) -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'general-announcement' && currentContent.items">
       <div class="col-12">
-        <div class="mb-4 mb-md-5" *ngFor="let announcement of currentContent.items; let idx = index">
-          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
-            <div class="row g-0">
-              <!-- Announcement Icon - Left Side -->
-              <div class="col-lg-5">
-                <!-- Image if available, otherwise icon -->
-                <div *ngIf="announcement.image" class="general-announcement-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px;">
-                  <img [src]="announcement.image" class="w-100 h-100" alt="{{ announcement.title }}" style="object-fit: cover;">
-                </div>
-                <!-- Placeholder icon if no image -->
-                <div *ngIf="!announcement.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
-                  <i class="fas fa-bullhorn" style="font-size: 5rem; color: var(--bs-primary);"></i>
-                </div>
-              </div>
-              <!-- Announcement Content - Right Side -->
-              <div class="col-lg-7">
-                <div class="p-3 p-md-4">
-                  <h2 class="mb-2 mb-md-3 general-announcement-title">{{ announcement.title }}</h2>
-                  <div class="general-announcement-content" [innerHTML]="announcement.description"></div>
-                </div>
-              </div>
+        <div class="mb-5 mb-md-6 pb-5 pb-md-6" [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'" *ngFor="let announcement of currentContent.items; let idx = index; let last = last">
+          <div class="card border-0 shadow-none">
+            <!-- Announcement Content Only -->
+            <div class="p-4 p-md-5">
+              <h2 class="mb-3 mb-md-4 general-announcement-title">{{ announcement.title }}</h2>
+              <div class="general-announcement-content" [innerHTML]="announcement.description"></div>
             </div>
           </div>
         </div>
@@ -599,24 +573,24 @@
     <!-- Sad Announcements Template - Elegant Layout (Same as Events/Activities) -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'sad-announcement' && currentContent.items">
       <div class="col-12">
-        <div class="mb-4 mb-md-5" *ngFor="let announcement of currentContent.items; let idx = index">
-          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
-            <div class="row g-0">
-              <!-- Announcement Icon - Left Side -->
-              <div class="col-lg-5">
+        <div class="mb-5 mb-md-6 pb-5 pb-md-6" [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'" *ngFor="let announcement of currentContent.items; let idx = index; let last = last">
+          <div class="card border-0 shadow-none overflow-hidden">
+            <div class="row g-0" [class.flex-row-reverse]="idx % 2 === 1">
+              <!-- Announcement Image/Icon - Alternates Left/Right -->
+              <div class="col-lg-6">
                 <!-- Image if available, otherwise icon -->
-                <div *ngIf="announcement.image" class="sad-announcement-image" style="position: relative; overflow: hidden; height: 100%; min-height: 350px;">
-                  <img [src]="announcement.image" class="w-100 h-100" alt="{{ announcement.title }}" style="object-fit: cover;">
+                <div *ngIf="announcement.image" class="sad-announcement-image" style="position: relative; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                  <img [src]="announcement.image" class="rounded-4 shadow" alt="{{ announcement.title }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                 </div>
                 <!-- Placeholder icon if no image -->
-                <div *ngIf="!announcement.image" class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 350px;">
-                  <i class="fas fa-heart-crack" style="font-size: 5rem; color: #6c757d;"></i>
+                <div *ngIf="!announcement.image" class="bg-light d-flex align-items-center justify-content-center rounded-4" style="height: 100%; min-height: 400px;">
+                  <i class="fas fa-heart-crack" style="font-size: 5rem; color: var(--bs-primary);"></i>
                 </div>
               </div>
-              <!-- Announcement Content - Right Side -->
-              <div class="col-lg-7">
-                <div class="p-3 p-md-4">
-                  <h2 class="mb-2 mb-md-3 sad-announcement-title">{{ announcement.title }}</h2>
+              <!-- Announcement Content -->
+              <div class="col-lg-6">
+                <div class="p-4 p-md-5">
+                  <h2 class="mb-3 mb-md-4 sad-announcement-title">{{ announcement.title }}</h2>
                   <div class="sad-announcement-content" [innerHTML]="announcement.description"></div>
                   
                   <!-- Attachment Link if available -->
@@ -632,33 +606,28 @@
     </div>
     
 
-    <!-- Booking Forms Template - Card Layout (Similar to Events) -->
+    <!-- Booking Forms Template - Simple List with Small Icons (Similar to Prayer) -->
     <div class="row" *ngIf="currentContent.type === 'list' && currentContent.id === 'booking-forms' && currentContent.items">
       <div class="col-12">
-        <div class="mb-4 mb-md-5" *ngFor="let form of currentContent.items; let idx = index">
-          <div class="card border-primary shadow-sm rounded-4 overflow-hidden">
-            <div class="row g-0">
-              <!-- PDF Icon - Left Side -->
-              <div class="col-lg-3">
-                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 100%; min-height: 250px;">
-                  <i class="fas fa-file-pdf" style="font-size: 5rem; color: var(--bs-primary);"></i>
-                </div>
+        <div class="booking-form-item py-4" [style.border-bottom]="!last ? '1px solid #e9ecef' : 'none'" *ngFor="let form of currentContent.items; let idx = index; let last = last">
+          <div class="d-flex align-items-start">
+            <!-- Small PDF Icon -->
+            <div class="flex-shrink-0 me-4">
+              <div class="bg-light rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                <i class="fas fa-file-pdf" style="font-size: 1.5rem; color: var(--bs-primary);"></i>
               </div>
-              <!-- Form Content - Right Side -->
-              <div class="col-lg-9">
-                <div class="p-3 p-md-4">
-                  <h3 class="mb-3 text-primary">{{ form.title }}</h3>
-                  <p class="text-muted mb-4" *ngIf="form.description" [innerHTML]="form.description"></p>
-                  
-                  <!-- Download Button -->
-                  <a [href]="form.link" target="_blank" class="btn btn-lg" 
-                     style="background-color: var(--bs-primary); color: white; border-color: var(--bs-primary);"
-                     *ngIf="form.link && form.link !== '#'">
-                    <i class="fas fa-download me-2"></i>Download Form
-                  </a>
-                  <button class="btn btn-secondary btn-lg" *ngIf="!form.link || form.link === '#'" disabled>Form Not Available</button>
-                </div>
-              </div>
+            </div>
+            <!-- Form Content -->
+            <div class="flex-grow-1">
+              <h3 class="mb-3" style="font-size: 1.5rem;">{{ form.title }}</h3>
+              
+              <!-- Download Button -->
+              <a [href]="form.link" target="_blank" class="btn" 
+                 style="background-color: var(--bs-primary); color: white; border-color: var(--bs-primary);"
+                 *ngIf="form.link && form.link !== '#'">
+                <i class="fas fa-download me-2"></i>Download Form
+              </a>
+              <button class="btn btn-secondary" *ngIf="!form.link || form.link === '#'" disabled>Form Not Available</button>
             </div>
           </div>
         </div>
@@ -732,10 +701,8 @@
         <ul class="list-unstyled">
           <li class="mb-2"><a (click)="onMenuClick('events')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Events</a></li>
           <li class="mb-2"><a (click)="onMenuClick('activities')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Activities</a></li>
-          <li class="mb-2"><a (click)="onMenuClick('services')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Services</a></li>
-          <li class="mb-2"><a (click)="onMenuClick('prayer')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Prayers</a></li>
-          <li class="mb-2"><a (click)="onMenuClick('trustees')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Trustees</a></li>
           <li class="mb-2"><a (click)="onMenuClick('gallery')" class="text-white text-decoration-none" style="cursor: pointer;"><i class="fas fa-chevron-right me-2"></i>Gallery</a></li>
+          <li class="mb-2"><a href="https://wonderful.org/pay?ref=263969" target="_blank" class="text-white text-decoration-none"><i class="fas fa-chevron-right me-2"></i>Donate</a></li>
         </ul>
       </div>
 
@@ -759,7 +726,7 @@
     <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
     <div class="row">
       <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-        <p class="mb-0">&copy; 2024 Vedic Society Hindu Temple. All rights reserved.</p>
+        <p class="mb-0">&copy; 2025 Vedic Society Hindu Temple. All rights reserved.</p>
       </div>
       <div class="col-md-6 text-center text-md-end">
         <a (click)="onMenuClick('legal')" class="text-white text-decoration-none me-3" style="cursor: pointer;">Legal</a>

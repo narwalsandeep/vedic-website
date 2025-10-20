@@ -1,0 +1,29 @@
+# ================================================================
+# CORS Configuration for Drupal services.yml
+# ================================================================
+# File Location: sites/default/services.yml
+# After adding this, MUST clear Drupal cache: drush cr
+# ================================================================
+
+cors.config:
+  enabled: true
+  allowedHeaders:
+    - 'content-type'
+    - 'authorization'
+    - 'x-requested-with'
+    - 'accept'
+    - 'origin'
+  allowedMethods:
+    - 'GET'
+    - 'POST'
+    - 'PUT'
+    - 'DELETE'
+    - 'OPTIONS'
+    - 'PATCH'
+  allowedOrigins:
+    - 'https://phpstack-1514009-5872259.cloudwaysapps.com'
+  allowedOriginsPatterns: []
+  exposedHeaders: false
+  maxAge: 3600
+  supportsCredentials: false
+

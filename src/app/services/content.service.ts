@@ -2,22 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, map, catchError } from 'rxjs';
 import { MenuContent, MenuApiResponse } from '../models/content.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContentService {
+  private readonly apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) { }
 
   // New method to get content by API endpoint
   getContentByEndpoint(endpoint: string, filterMenuItem?: string, menuId?: string): Observable<MenuApiResponse> {
+    // Construct full URL with base URL
+    const fullUrl = `${this.apiBaseUrl}${endpoint}`;
+    
     // Add timestamp to prevent caching
     const timestamp = Date.now();
-    const separator = endpoint.includes('?') ? '&' : '?';
-    const endpointWithTimestamp = `${endpoint}${separator}_t=${timestamp}`;
+    const separator = fullUrl.includes('?') ? '&' : '?';
+    const urlWithTimestamp = `${fullUrl}${separator}_t=${timestamp}`;
     
-    return this.http.get<any>(endpointWithTimestamp).pipe(
+    return this.http.get<any>(urlWithTimestamp).pipe(
       map(apiResponse => this.transformApiResponse(apiResponse, endpoint, filterMenuItem, menuId)),
       catchError(error => {
         console.error('API Error:', error);
@@ -38,8 +43,8 @@ export class ContentService {
 
   // Transform API response to our MenuContent format
   private transformApiResponse(apiResponse: any, endpoint: string, filterMenuItem?: string, menuId?: string): MenuApiResponse {
-    // Handle all Drupal API responses (starting with /api/)
-    if (endpoint.startsWith('/api/') && Array.isArray(apiResponse)) {
+    // Handle all Drupal API responses
+    if (Array.isArray(apiResponse)) {
       // Determine template type based on endpoint
       let template: 'default' | 'activities' | 'events' | 'contact' | 'about' | 'blog' = 'default';
       let title = 'Temple Information';
@@ -88,8 +93,8 @@ export class ContentService {
         title = contentInfo.title;
         description = contentInfo.description;
       } else if (endpoint.includes('booking-forms')) {
-        title = 'Booking Forms';
-        description = 'Download forms for poojas, ceremonies and temple services';
+        title = 'Forms & Information';
+        description = 'Download forms and information documents for temple services';
         template = 'default';
       } else if (endpoint.includes('trustee-management')) {
         title = 'Our Trustees';
@@ -168,6 +173,12 @@ export class ContentService {
             if (endpoint.includes('sad-announcements')) {
               const body = this.extractDrupalValue(item.body) || 'No content available.';
               
+              // Extract image from field_sad_file
+              let imageUrl = '';
+              if (item.field_sad_file && Array.isArray(item.field_sad_file) && item.field_sad_file.length > 0) {
+                imageUrl = item.field_sad_file[0].url || '';
+              }
+              
               // Extract attachment URL if available
               let attachmentUrl = '';
               if (item.field_attachment && Array.isArray(item.field_attachment) && item.field_attachment.length > 0) {
@@ -178,7 +189,7 @@ export class ContentService {
                 id: this.extractDrupalValue(item.nid) || this.extractDrupalValue(item.title) || 'item',
                 title: this.extractDrupalValue(item.title) || 'Sad Announcement',
                 description: body, // Full HTML content
-                image: '', // No images for sad announcements
+                image: imageUrl, // Image from field_sad_file
                 link: attachmentUrl // PDF attachment if available
               };
             }
@@ -289,10 +300,10 @@ export class ContentService {
               const prayer = this.extractDrupalValue(item.field_prayer) || 'No prayer content available.';
               const language = this.extractDrupalValue(item.field_language) || '';
               
-              // Build prayer content with language badge
+              // Build prayer content with language badge (gray pill)
               let prayerContent = '';
               if (language) {
-                prayerContent += `<span class="badge bg-secondary mb-3">${language}</span>`;
+                prayerContent += `<span class="language-badge">${language}</span>`;
               }
               prayerContent += prayer;
               
@@ -557,8 +568,8 @@ export class ContentService {
         description: 'Important legal information, policies and disclaimers'
       },
       'booking forms': {
-        title: 'Booking Forms',
-        description: 'Download forms for temple services and ceremonies'
+        title: 'Forms & Information',
+        description: 'Download forms and information documents for temple services'
       },
       'become a member': {
         title: 'Become a Member',

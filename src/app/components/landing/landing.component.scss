@@ -231,86 +231,52 @@
   }
 }
 
-// General Announcement title responsive sizing (same as events)
-.general-announcement-title {
+// Shared title and content styles for all listing pages
+.general-announcement-title,
+.sad-announcement-title,
+.service-title,
+.activity-title,
+.prayer-title,
+.event-title,
+.gallery-title {
   font-size: 1.5rem;
   line-height: 1.3;
   color: #1a1a2e;
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
+  @media (min-width: 768px) { font-size: 2rem; }
 }
 
-// General Announcement content styling (same as events)
-::ng-deep .general-announcement-content {
+::ng-deep .general-announcement-content,
+::ng-deep .sad-announcement-content,
+::ng-deep .service-content,
+::ng-deep .activity-content,
+::ng-deep .prayer-content,
+::ng-deep .event-content,
+::ng-deep .gallery-content {
   color: #2c3e50;
   font-size: 1rem;
   line-height: 1.7;
-
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
-    line-height: 2.2;
-  }
-
+  @media (min-width: 768px) { font-size: 1.25rem; line-height: 2.2; }
+  
   p {
     font-size: 1rem;
     margin-bottom: 0.75rem;
     color: #495057;
     line-height: 1.7;
-
-    @media (min-width: 768px) {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      line-height: 2;
-    }
-
-    strong {
-      color: var(--bs-primary);
-      font-weight: 600;
-    }
+    @media (min-width: 768px) { font-size: 1.2rem; margin-bottom: 1.5rem; line-height: 2; }
+    
+    strong { color: var(--bs-primary); font-weight: 600; }
   }
 }
 
-// Sad Announcement title responsive sizing (same as events)
-.sad-announcement-title {
-  font-size: 1.5rem;
-  line-height: 1.3;
-  color: #1a1a2e;
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-}
-
-// Sad Announcement content styling (same as events)
-::ng-deep .sad-announcement-content {
-  color: #2c3e50;
-  font-size: 1rem;
-  line-height: 1.7;
-
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
-    line-height: 2.2;
-  }
-
-  p {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-    color: #495057;
-    line-height: 1.7;
-
-    @media (min-width: 768px) {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      line-height: 2;
-    }
-
-    strong {
-      color: var(--bs-primary);
-      font-weight: 600;
-    }
-  }
+// Shared image responsive sizing for all listing pages
+.general-announcement-image,
+.sad-announcement-image,
+.service-main-image,
+.activity-main-image,
+.event-main-image,
+.gallery-main-image {
+  @media (max-width: 991px) { min-height: 300px !important; }
+  @media (max-width: 575px) { min-height: 250px !important; }
 }
 
 // Service main image overlay effect (same as events/activities)
@@ -346,46 +312,7 @@
   }
 }
 
-// Service title responsive sizing (same as events)
-.service-title {
-  font-size: 1.5rem;
-  line-height: 1.3;
-  color: #1a1a2e;
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-}
-
-// Service content styling (same as events)
-::ng-deep .service-content {
-  color: #2c3e50;
-  font-size: 1rem;
-  line-height: 1.7;
-
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
-    line-height: 2.2;
-  }
-
-  p {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-    color: #495057;
-    line-height: 1.7;
-
-    @media (min-width: 768px) {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      line-height: 2;
-    }
-
-    strong {
-      color: var(--bs-primary);
-      font-weight: 600;
-    }
-  }
-}
+// Service styles consolidated above in shared section
 
 // Activity main image overlay effect (reuse event styles)
 .activity-main-image {
@@ -430,58 +357,9 @@
   }
 }
 
-// Activity title responsive sizing (same as events)
-.activity-title {
-  font-size: 1.5rem;
-  line-height: 1.3;
-  color: #1a1a2e;
+// Activity styles consolidated above in shared section
 
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-}
-
-// Activity content styling (similar to events)
-::ng-deep .activity-content {
-  color: #2c3e50;
-  font-size: 1rem;
-  line-height: 1.7;
-
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
-    line-height: 2.2;
-  }
-
-  p {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-    color: #495057;
-    line-height: 1.7;
-
-    @media (min-width: 768px) {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      line-height: 2;
-    }
-
-    strong {
-      color: var(--bs-primary);
-      font-weight: 600;
-    }
-  }
-}
-
-// Gallery styling - Centered content with images at bottom
-// Gallery title styling (same as events)
-.gallery-title {
-  font-size: 1.5rem;
-  line-height: 1.3;
-  color: #1a1a2e;
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-}
+// Gallery styling - title consolidated above in shared section
 
 // Gallery content styling - centered
 ::ng-deep .gallery-content {
@@ -557,37 +435,7 @@
 }
 
 // Prayer main image overlay effect (same as events)
-.prayer-main-image {
-  .image-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  &:hover .image-overlay {
-    opacity: 1;
-  }
-
-  &:hover img {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 991px) {
-    min-height: 300px !important;
-  }
-
-  @media (max-width: 767px) {
-    min-height: 250px !important;
-  }
-}
+// Prayer styles removed - using simple icon layout instead
 
 .prayer-item {
   @media (max-width: 767px) {
@@ -599,55 +447,17 @@
   }
 }
 
-// Prayer title responsive sizing (same as events)
-.prayer-title {
-  font-size: 1.5rem;
-  line-height: 1.3;
-  color: #1a1a2e;
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-}
-
-// Prayer content styling (same as events)
-::ng-deep .prayer-content {
-  color: #2c3e50;
-  font-size: 1rem;
-  line-height: 1.7;
-
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
-    line-height: 2.2;
-  }
-
-  p {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-    color: #495057;
-    line-height: 1.7;
-
-    @media (min-width: 768px) {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      line-height: 2;
-    }
-
-    strong {
-      color: var(--bs-primary);
-      font-weight: 600;
-    }
-  }
-
-  .language-badge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background-color: var(--bs-primary);
-    color: white;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-  }
+// Prayer language badge - gray pill style
+::ng-deep .prayer-content .language-badge {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  background-color: #6c757d;
+  color: white;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 
 // Event main image overlay effect
@@ -695,16 +505,7 @@
   }
 }
 
-// Event title responsive sizing
-.event-title {
-  font-size: 1.5rem;
-  line-height: 1.3;
-  color: #1a1a2e;
-
-  @media (min-width: 768px) {
-    font-size: 2rem;
-  }
-}
+// Event title consolidated above in shared section
 
 // Event content specific styling - Clean & Elegant
 ::ng-deep .event-content {

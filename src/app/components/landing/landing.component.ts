@@ -127,91 +127,91 @@ export class LandingComponent implements OnInit, AfterViewInit {
     return null;
   }
 
-  // Left menu items (4 items) - Updated with API endpoints using proxy
+  // Left menu items (4 items) - API endpoints (base URL added by service based on environment)
   leftMenuItems = [
     {
       title: 'Home',
       id: 'home',
-      endpoint: '/api/home?_format=json',
+      endpoint: '/home?_format=json',
       submenu: []
     },
     {
       title: 'Events',
       id: 'events',
-      endpoint: '/api/events-management?_format=json',
+      endpoint: '/events-management?_format=json',
       submenu: []
     },
     {
       title: 'Activities',
       id: 'activities',
-      endpoint: '/api/activity-manager?_format=json',
+      endpoint: '/activity-manager?_format=json',
       submenu: []
     },
-    // Temple menu uses article api endpoint /api/article?_format=json with different filters
+    // Temple menu uses article endpoint with different filters
     // Content service filters articles by field_menu_item value
     {
       title: 'Temple',
       id: 'temple',
-      endpoint: '/api/article?_format=json',
+      endpoint: '/article?_format=json',
       filterMenuItem: 'The Shrines',
       submenu: [
-        { title: 'Shrines', id: 'shrines', endpoint: '/api/article?_format=json', filterMenuItem: 'The Shrines' },
-        { title: 'Priest', id: 'priest', endpoint: '/api/article?_format=json', filterMenuItem: 'Priest' },
-        { title: 'Prayer', id: 'prayer', endpoint: '/api/prayers?_format=json' },
-        { title: 'Gallery', id: 'gallery', endpoint: '/api/events-gallery?_format=json' }
+        { title: 'Shrines', id: 'shrines', endpoint: '/article?_format=json', filterMenuItem: 'The Shrines' },
+        { title: 'Priest', id: 'priest', endpoint: '/article?_format=json', filterMenuItem: 'Priest' },
+        { title: 'Prayer', id: 'prayer', endpoint: '/prayers?_format=json' },
+        { title: 'Gallery', id: 'gallery', endpoint: '/events-gallery?_format=json' }
       ]
     }
   ];
 
-  // Right menu items (4 items) - Updated with API endpoints using proxy
+  // Right menu items (4 items) - API endpoints (base URL added by service based on environment)
   rightMenuItems = [
     {
       title: 'About Us',
       id: 'about-us',
-      endpoint: '/api/about-us?_format=json',
+      endpoint: '/about-us?_format=json',
       submenu: [
-        { title: 'About Us', id: 'about-us', endpoint: '/api/about-us?_format=json' },
-        { title: 'Objectives', id: 'objectives', endpoint: '/api/article?_format=json', filterMenuItem: 'Objective' },
-        { title: 'Trustees', id: 'trustees', endpoint: '/api/trustee-management?_format=json' },
-        { title: 'Legal', id: 'legal', endpoint: '/api/article?_format=json', filterMenuItem: 'Legal' }
+//        { title: 'About Us', id: 'about-us', endpoint: '/about-us?_format=json' },
+        { title: 'Objectives', id: 'objectives', endpoint: '/article?_format=json', filterMenuItem: 'Objective' },
+        { title: 'Trustees', id: 'trustees', endpoint: '/trustee-management?_format=json' },
+        { title: 'Legal', id: 'legal', endpoint: '/article?_format=json', filterMenuItem: 'Legal' }
       ]
     },
     {
       title: 'Services',
       id: 'services',
-      endpoint: '/api/services?_format=json',
+      endpoint: '/services?_format=json',
       submenu: [
-        { title: 'Services', id: 'services', endpoint: '/api/services?_format=json' },
-        { title: 'School Visits', id: 'school-visits', endpoint: '/api/article?_format=json', filterMenuItem: 'School Visits' },
-        { title: 'Booking Forms', id: 'booking-forms', endpoint: '/api/booking-forms?_format=json' }
+        { title: 'Services', id: 'services', endpoint: '/services?_format=json' },
+        { title: 'School Visits', id: 'school-visits', endpoint: '/article?_format=json', filterMenuItem: 'School Visits' },
+        { title: 'Forms & Information', id: 'booking-forms', endpoint: '/booking-forms?_format=json' }
       ]
     },
     {
       title: 'Join Us',
       id: 'join-us',
-      endpoint: '/api/join-us?_format=json',
+      endpoint: '/join-us?_format=json',
       submenu: [
-        { title: 'Members', id: 'members', endpoint: '/api/article?_format=json', filterMenuItem: 'Become A Member' },
-        { title: 'Volunteer', id: 'volunteer', endpoint: '/api/article?_format=json', filterMenuItem: 'Vedic Volunteer' },
-        { title: 'Contact', id: 'contact', endpoint: '/api/article?_format=json', filterMenuItem: 'Contact' }
+        { title: 'Members', id: 'members', endpoint: '/article?_format=json', filterMenuItem: 'Become A Member' },
+        { title: 'Volunteer', id: 'volunteer', endpoint: '/article?_format=json', filterMenuItem: 'Vedic Volunteer' },
+        { title: 'Contact', id: 'contact', endpoint: '/article?_format=json', filterMenuItem: 'Contact' }
       ]
     },
     {
       title: 'Donate',
       id: 'donate',
-      endpoint: '/api/article?_format=json',
+      endpoint: '/article?_format=json',
       filterMenuItem: 'Donate',
       submenu: []
     },
     {
       title: 'More',
       id: 'more',
-      endpoint: '/api/more?_format=json',
+      endpoint: '/more?_format=json',
       submenu: [
-        { title: 'Blog', id: 'blog', endpoint: '/api/blog?_format=json' },
-        { title: 'Sad Announcement', id: 'sad-announcement', endpoint: '/api/sad-announcements?_format=json' },
-        { title: 'General Announcement', id: 'general-announcement', endpoint: '/api/general-announcements?_format=json' },
-        { title: 'Feedback', id: 'feedback', endpoint: '/api/feedback?_format=json' }
+//        { title: 'Blog', id: 'blog', endpoint: '/blog?_format=json' },
+        { title: 'Sad Announcement', id: 'sad-announcement', endpoint: '/sad-announcements?_format=json' },
+        { title: 'General Announcement', id: 'general-announcement', endpoint: '/general-announcements?_format=json' },
+//        { title: 'Feedback', id: 'feedback', endpoint: '/feedback?_format=json' }
       ]
     }
   ];
